@@ -1,0 +1,84 @@
+/* Header */
+.nav a{
+    text-decoration: none;
+}
+
+/* Explore */
+.filter > div select{
+    border-radius: 45px;
+    border: 1px solid #DFDFDF;
+}
+
+/* Responsive */
+@media(min-width: 320px){
+    /* Header */
+    .nav {
+        gap: 15px;
+    }
+
+    .nav a p{
+        font-size: 12.5px;
+    }
+
+    /* Explore */
+    .filter{
+        gap: 12px;
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 7px;
+    }
+
+    .filter > div select{
+        width: 134px;
+    }
+}
+
+@media(min-width: 375px){
+    /* Explore */
+    .filter > div select{
+        width: 152px;
+    }
+}
+
+@media(min-width: 768px){
+    /* Heaer */
+    .nav {
+        gap: 30px;
+    }
+
+    .nav a p{
+        font-size: initial;
+    }
+
+    .nfts > div{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Explore */
+    .filter{
+        gap: 29px;
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: 0;
+    }
+
+    .filter > div select{
+        width: 157px;
+    }
+}
+
+@media(min-width: 1040px){
+    .nfts > div{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media(min-width: 1375px){
+    .nfts > div{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media(min-width: 1515px){
+    .bests{
+        padding: 0 70px;
+    }
+}

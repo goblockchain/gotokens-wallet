@@ -1,0 +1,33 @@
+@media (min-width: 320px) {
+    /* Share Hash */
+    .hash{
+        width: initial;
+    }
+
+    .hash p{
+        font-size: 14px;
+    }
+
+    /* Recive Funds */
+    .container{
+        padding-left: 45px;
+    }
+}
+
+@media (min-width: 350px) {
+    /* Recive Funds */
+    .container{
+        padding-left: 0;
+    }
+}
+
+@media (min-width: 425px) {
+    /* Share Hash */
+    .hash{
+        width: 100%;
+    }
+
+    .hash p{
+        font-size: initial;
+    }
+}

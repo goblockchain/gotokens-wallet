@@ -1,0 +1,6 @@
+{
+    "*.{ts,tsx}":[
+        "eskint 'src/**' --fix",
+        "npm run test:staged"
+    ]
+}
