@@ -70,31 +70,6 @@ import {
                 </Text>
               </Box>
             </Box>
-           {/* <Flex mt="-80px" justifyContent="space-between">
-              <Button variant="unstyled" onClick={() => router.push("/user/me")}>
-                <ChevronLeftIcon w="20px" h="20px" color="gray.200" />
-              </Button>
-              <Flex>
-                <Button
-                  onClick={() => router.push("/manage-space")}
-                  variant="unstyled"
-                  border="1px solid"
-                  borderColor="gray.200"
-                  borderRadius="15px"
-                  mr="13px"
-                >
-                  <Icon color="gray.400" as={FaLink}></Icon>
-                </Button>
-                <Button
-                  variant="unstyled"
-                  border="1px solid"
-                  borderColor="gray.200"
-                  borderRadius="15px"
-                >
-                  <Icon color="gray.400" as={FaQrcode}></Icon>
-                </Button>
-              </Flex> 
-            </Flex>*/}
           </Flex>
           <Box px={{ base: "22px", md: "52px", xl: "32px", "2xl": "72px" }}>
             <Box textAlign="center">
@@ -102,14 +77,7 @@ import {
               Espaço goBlockchain
               </Heading>
             </Box>
-            <Flex mt="38px" justifyContent="center">
-              <Button onClick={() => handleQuery("nft")} w="130px" mr="33px">
-                NFT
-              </Button>
-              <Button onClick={() => handleQuery("fto")}  w="230px">
-                Beneficios Exclusivos
-              </Button>
-            </Flex>
+            
             {children}
           </Box>
           <Footer/>
