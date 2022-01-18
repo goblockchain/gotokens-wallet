@@ -20,7 +20,7 @@ export default function space() {
   const nfts = [
     {
       name: "goPunk #246",
-      nftCover: "/space/325.png",
+      nftCover: "/space/fazendeiro.png",
       options: [{ title: "report", icon: "report" }],
       type: "marketplace" as const,
       quantity: "single" as const,
@@ -32,7 +32,7 @@ export default function space() {
     },
     {
       name: "goPunk #246",
-      nftCover: "/space/246.png",
+      nftCover: "/space/ninja.png",
       options: [{ title: "report", icon: "report" }],
       type: "marketplace" as const,
       quantity: "multiple" as const,
@@ -46,7 +46,7 @@ export default function space() {
     },
     {
       name: "goPunk #197",
-      nftCover: "/space/197.png",
+      nftCover: "/space/punk.png",
       options: [{ title: "report", icon: "report" }],
       type: "marketplace" as const,
       quantity: "single" as const,
@@ -58,7 +58,7 @@ export default function space() {
     },
     {
       name: "goPunk #138",
-      nftCover: "/space/138.png",
+      nftCover: "/space/robô.png",
       options: [{ title: "report", icon: "report" }],
       type: "marketplace" as const,
       quantity: "single" as const,
