@@ -7,17 +7,11 @@ import { Input } from ".."
 
 export function PaymentModal({ onClose }) {
   const [step, setStep] = useState<
-    "paymentType" | "newCard" | "confirmPayment" | "cryptoCheckout" | "loading"
+    "paymentType" | "confirmPayment" | "cryptoCheckout" | "loading"
   >("paymentType")
   const [paymentType, setPaymentType] = useState<"credit" | "crypto">("credit")
   const [selectedCurreny, setSelectedCurrency] = useState("FTR")
 
-  const [crediCard, setCreditCard] = useState({
-    cardNumber: "",
-    expiration: "",
-    cvc: "",
-    cardType: "MasterCard",
-  })
 
   useEffect(() => {
     if (step === "loading") {
@@ -35,80 +29,6 @@ export function PaymentModal({ onClose }) {
             Pagamento
           </Text>
           <Box mt="32px" w="100%">
-            <Button
-              onClick={() => setPaymentType("credit")}
-              transition="all 500ms"
-              borderRadius="10px"
-              m="0 auto"
-              height="100%"
-              maxW="298px"
-              p="19px"
-              w="100%"
-              border="1px solid #dfdfdf"
-              borderColor={paymentType === "credit" && "yellow.500"}
-              bg="0"
-              _focus={{
-                outline: "0",
-                boxShadow: "inherit",
-              }}
-              _hover={{
-                bg: "0",
-              }}
-              display="block"
-            >
-              <Box w="140px">
-                <Flex
-                  alignItems="center"
-                  w="100%"
-                  justifyContent="space-between"
-                >
-                  <Image
-                    src="/payment/credit.png"
-                    alt="credit card"
-                    mr="10px"
-                  ></Image>
-                  <Text fontWeight="400" color="#454545" fontSize="14px">
-                    Pagar com cartão de crédito/débito
-                  </Text>
-                </Flex>
-                <Flex mt="16px">
-                  <Image
-                    height="11px"
-                    width="11px"
-                    src="/payment/clock.png"
-                    alt="clock"
-                    mr="10px"
-                  ></Image>
-                  <Text fontWeight="400" color="#717171" fontSize="12px">
-                    Instântaneo
-                  </Text>
-                </Flex>
-                <Flex mt="7px">
-                  <Image
-                    height="12px"
-                    width="8px"
-                    src="/payment/dollar-bill.png"
-                    alt="dollar"
-                    mr="10px"
-                  ></Image>
-                  <Text fontWeight="400" color="#717171" fontSize="12px">
-                    5% taxa de pagamento
-                  </Text>
-                </Flex>
-                <Flex mt="7px">
-                  <Image
-                    src="/payment/thumbs-up.png"
-                    alt="thumbs up"
-                    mr="10px"
-                    height="11px"
-                    width="10px"
-                  ></Image>
-                  <Text fontWeight="400" color="#717171" fontSize="12px">
-                    Recomendado
-                  </Text>
-                </Flex>
-              </Box>
-            </Button>
             <Button
               onClick={() => setPaymentType("crypto")}
               transition="all 500ms"
@@ -212,140 +132,6 @@ export function PaymentModal({ onClose }) {
           </Flex>
         </Box>
       )}
-
-      {step === "confirmPayment" && (
-        <Box w="100%" m="0 auto">
-          <Text mb="32px" fontSize="20px" textAlign="center">
-            Pagamento
-          </Text>
-
-          {crediCard.cardNumber.length > 1 ? (
-            <Flex alignItems="center">
-              <Flex
-                alignItems="center"
-                height="52px"
-                justifyContent="space-between"
-                w="100%"
-                borderRadius="10px"
-                border="1px solid #dfdfdf"
-                p="0 20px"
-              >
-                <Flex alignItems="center">
-                  <Image
-                    src="/payment/logo_mastercard.png"
-                    alt="master card logo"
-                    height="18px"
-                    width="26px"
-                    mr="12px"
-                  />
-                  <Text fontWeight="400" fontSize="12px">
-                    {crediCard.cardType} {crediCard.cardNumber}
-                  </Text>
-                </Flex>
-                <Image
-                  src="/payment/confirmed.png"
-                  width="18px"
-                  height="18px"
-                />
-              </Flex>
-              <button>
-                <Image
-                  src="/payment/switch-cards.png"
-                  width="16px"
-                  height="18px"
-                  ml="12px"
-                ></Image>
-              </button>
-            </Flex>
-          ) : (
-            <Flex alignItems="center">
-              <Flex
-                onClick={() => setStep("newCard")}
-                cursor="pointer"
-                alignItems="center"
-                height="52px"
-                justifyContent="space-between"
-                w="100%"
-                borderRadius="10px"
-                border="1px solid #dfdfdf"
-                p="0 20px"
-              >
-                <Flex alignItems="center">
-                  <Text fontWeight="400" fontSize="12px">
-                    Novo cartão de crédito/débito
-                  </Text>
-                </Flex>
-                <Image src="/payment/plus.png" width="12px" height="12px" />
-              </Flex>
-              <button>
-                <Image
-                  src="/payment/switch-cards.png"
-                  width="16px"
-                  height="18px"
-                  ml="12px"
-                ></Image>
-              </button>
-            </Flex>
-          )}
-
-          <Box
-            mt="30px"
-            textAlign="end"
-            borderRadius="10px"
-            background="#f4f4f4"
-            p="19px 26px"
-            fontSize="12px"
-            fontWeight="normal"
-          >
-            <Flex w="100%" justifyContent="space-between">
-              <Text fontWeight="400">VALOR</Text>
-              <Box>
-                <Text fontWeight="400">1.900,00 BRL</Text>
-                <Text fontWeight="400" color="#a19d9d">
-                  0.1 ETH
-                </Text>
-              </Box>
-            </Flex>
-            <Box mt="15px" w="100%" height="1px" background="#dfdfdf" />
-            <Flex mt="15px" w="100%" justifyContent="space-between">
-              <Text fontWeight="400">Taxa de cartão (5%) </Text>
-              <Text fontWeight="400">95,00 BRL</Text>
-            </Flex>
-            <Flex w="100%" justifyContent="space-between">
-              <Text fontWeight="400">Taxa GoTokens (10%)</Text>
-              <Text fontWeight="400" color="#a19d9d">
-                190,00 BRL
-              </Text>
-            </Flex>
-          </Box>
-
-          <Box mt="30px" w="100%" height="1px" background="#dfdfdf" />
-
-          <Flex mt="15px" w="100%" justifyContent="space-between">
-            <Text fontSize="14px">PAGAMENTO TOTAL</Text>
-            <Text fontWeight="400" fontSize="12px">
-              2.185 BRL
-            </Text>
-          </Flex>
-
-          <Flex w="100%" m="0 auto" mt="33px">
-            <Button
-              onClick={() => setStep("loading")}
-              borderRadius="45px"
-              border="1px solid #dfdfdf"
-              bg="#fff"
-              _hover={{ bg: "" }}
-              m="0 auto"
-              height="48px"
-              textAlign="center"
-              width="123px"
-            >
-              Concluir
-            </Button>
-          </Flex>
-        </Box>
-      )}
-
       {step === "cryptoCheckout" && (
         <Box w="100%" m="0 auto">
           <Text mb="32px" fontSize="20px" textAlign="center">
@@ -454,7 +240,7 @@ export function PaymentModal({ onClose }) {
         </Box>
       )}
 
-      {step === "newCard" && (
+     {/* {step === "newCard" && (
         <Box w="100%" m="0 auto">
           <Text mb="32px" fontSize="20px" textAlign="center">
             Adicionar Cartão
@@ -516,7 +302,7 @@ export function PaymentModal({ onClose }) {
             </Button>
           </Flex>
         </Box>
-      )}
+              )} */}
 
       {step === "loading" && (
         <Flex
