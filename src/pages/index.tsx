@@ -12,7 +12,7 @@ import { SpaceLayoutFiltr } from '../layouts/spaceLayoutFiltr'
 export default function space () {
   const nfts = [
     {
-      name: 'goPunk #246',
+      name: 'goPunk #325',
       nftCover: '/space/fazendeiro.png',
       options: [{ title: 'report', icon: 'report' }],
       type: 'marketplace' as const,
