@@ -98,6 +98,6 @@ export default function space () {
   )
 }
 
-space.getLayout = function getLayout(page: ReactElement) {
+space.getLayout = function getLayout (page: ReactElement) {
   return <SpaceLayoutFiltr >{page}</SpaceLayoutFiltr>
 }

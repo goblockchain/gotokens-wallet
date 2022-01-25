@@ -9,7 +9,8 @@ import {
   Image,
   Badge,
   Center,
-  Image as ChakraImage
+  Image as ChakraImage,
+  Iframe 
 } from '@chakra-ui/react'
 
 // import ReactElement  from 'react'
@@ -114,12 +115,17 @@ export default function nft () {
                     >
                     </Box>
                   </Box>
-                  <Image
+                  <Box
                     height="380px"
                     width="380px"
-                    src={fundoNft.src}
-                    alt="nft"
-                  />
+                    bg="#FFFFFF"
+                  >
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src="https://app.vectary.com/viewer/v1/?model=7fa90a27-83ae-4ab1-ad6f-1b14f24fcc3c&env=studio3&turntable=3" title="description">
+                    </iframe>
+                  </Box>
                 </Flex>
               </Box>
             </Box>
