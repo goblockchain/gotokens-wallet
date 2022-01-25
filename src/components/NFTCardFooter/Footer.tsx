@@ -7,10 +7,11 @@ import Link from "next/link"
 export function Footer() {
   return (
     <Box
+      mt="30px"
       width="100%"
-      borderTop="1.5px solid #E2E2E2"
-      p="30px"
+      p="20px"
       as="footer"
+      bg="#0A03AB"
     >
       <Flex
         m="0 40px"
@@ -19,26 +20,17 @@ export function Footer() {
         fontSize="14px"
         alignItems="center"
       >
-        <Flex mb={{ base: "20px", md: "0" }} alignItems="center">
-          <Text mr="10px" fontWeight="300">
-          Uma loja de NFT feita pela plataforma de tokenização
+        <Flex mb={{ base: '20px', md: '0' }} alignItems="center">
+          <Text
+            fontWeight="300"
+            color="#FFFFFF"
+            FontFamily= "Roboto"
+            FontStyle= "Bold"
+            FontSize= "10px"
+            LineHeight= "12px"
+          >
+            Terms & Conditions
           </Text>
-          <Flex
-          cursor="pointer"
-          onClick={() =>
-                  window.open(
-                    "https://gotokens.netlify.app/",
-                    "_blank"
-                  )
-                }>
-            <Text
-            color="#FDC921"
-            fontWeight="bold"
-            fontSize="18px"
-            >
-              GoTokens
-            </Text>
-          </Flex>
         </Flex>
       </Flex>
     </Box>

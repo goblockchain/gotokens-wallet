@@ -1,19 +1,17 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import {
   SimpleGrid
 } from '@chakra-ui/react'
 
 import { NFTCardStore } from '../components/NFTCardFiltrStore'
 import Head from 'next/head'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { ReactElement, useEffect } from 'react'
 import { SpaceLayoutFiltr } from '../layouts/spaceLayoutFiltr'
 
 export default function space () {
   const nfts = [
     {
-      name: 'goPunk #325',
-      nftCover: '/space/fazendeiro.png',
+      name: 'The Communicator',
+      nftCover: '/space/NFT.png',
       options: [{ title: 'report', icon: 'report' }],
       type: 'marketplace' as const,
       quantity: 'single' as const,
@@ -23,6 +21,7 @@ export default function space () {
         PriceBRL: '1.900,00 BRL'
       }
     },
+    {/*
     {
       name: 'goPunk #246',
       nftCover: '/space/ninja.png',
@@ -63,8 +62,8 @@ export default function space () {
         throw: '0.57 ETH'
       }
     }
+  */}
   ]
-
 
   return (
     <>
@@ -78,18 +77,27 @@ export default function space () {
         justifyItems="center"
         cursor="pointer"
         spacing="16px"
-        columns={{ sm: 1, lg: 2, xl: 4 }}
+        // columns={{ sm: 1, lg: 2, xl: 4 }}
       >
-        {nfts.map((nft) => (
+        {/* {nfts.map((nft) => (
           <NFTCardStore data={nft} key={nft.name} />
         ))}
+       */}
+        <NFTCardStore data={{
+          name: 'The Communicator',
+          nftCover: '/space/nft.png',
+          options: [{ title: 'report', icon: 'report' }],
+          type: 'marketplace' as const,
+          quantity: 'single' as const,
+          marketplace: {
+            type: 'fixedPrice' as const
+          }
+        }}/>
       </SimpleGrid>
-
-     
     </>
   )
 }
 
 space.getLayout = function getLayout(page: ReactElement) {
-  return <SpaceLayoutFiltr user="goBlockchain">{page}</SpaceLayoutFiltr>
+  return <SpaceLayoutFiltr >{page}</SpaceLayoutFiltr>
 }

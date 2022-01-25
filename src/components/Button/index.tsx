@@ -8,12 +8,10 @@ export const Button = forwardRef((props: ChakraButtonProps, ref) => {
     height: "50px",
     p: "15px 33px",
     borderRadius: "42px",
-    border: "1px solid",
-    borderColor: "gray.100",
-    bg: "#fff",
-    _hover: { borderColor: "yellow.500", color: "yellow.500" },
+    bg: "#0e0bf5",
+    _hover: { bg: "#0d0b7e" },
     transition: "all 250ms",
-    color: "gray.500",
+    color: "#FFFFFF",
   }
   return (
     <ChakraButton

@@ -12,7 +12,6 @@ export function PaymentModal({ onClose }) {
   const [paymentType, setPaymentType] = useState<"credit" | "crypto">("credit")
   const [selectedCurreny, setSelectedCurrency] = useState("FTR")
 
-
   useEffect(() => {
     if (step === "loading") {
       setInterval(onClose, 1500)
@@ -147,7 +146,7 @@ export function PaymentModal({ onClose }) {
               width="82px"
               _hover={{ bg: "" }}
               _focus={{ outline: "0" }}
-              borderColor={selectedCurreny === "FTR" ? "yellow.500" : "#dfdfdf"}
+              borderColor={selectedCurreny === "FTR" ? "blue.500" : "#dfdfdf"}
               onClick={() => setSelectedCurrency("FTR")}
             >
               <Image borderRadius="50%" mr="8px" src="/payment/ftr.png"></Image>
@@ -161,7 +160,7 @@ export function PaymentModal({ onClose }) {
               width="82px"
               _hover={{ bg: "" }}
               _focus={{ outline: "0" }}
-              borderColor={selectedCurreny === "ETH" ? "yellow.500" : "#dfdfdf"}
+              borderColor={selectedCurreny === "ETH" ? "blue.500" : "#dfdfdf"}
               onClick={() => setSelectedCurrency("ETH")}
             >
               <Image mr="8px" src="/payment/eth.png"></Image>
@@ -175,7 +174,7 @@ export function PaymentModal({ onClose }) {
               width="82px"
               _hover={{ bg: "" }}
               _focus={{ outline: "0" }}
-              borderColor={selectedCurreny === "BNB" ? "yellow.500" : "#dfdfdf"}
+              borderColor={selectedCurreny === "BNB" ? "blue.500" : "#dfdfdf"}
               onClick={() => setSelectedCurrency("BNB")}
             >
               <Image mr="8px" src="/payment/bnb.png"></Image>
@@ -224,11 +223,11 @@ export function PaymentModal({ onClose }) {
 
           <Flex w="100%" m="0 auto" mt="33px">
             <Button
-              onClick={() => setStep("loading")}
+              onClick={() => setStep('loading')}
               borderRadius="45px"
               border="1px solid #dfdfdf"
               bg="#fff"
-              _hover={{ bg: "" }}
+              // _hover={{ bg: "" }}
               m="0 auto"
               height="48px"
               textAlign="center"
@@ -239,72 +238,7 @@ export function PaymentModal({ onClose }) {
           </Flex>
         </Box>
       )}
-
-     {/* {step === "newCard" && (
-        <Box w="100%" m="0 auto">
-          <Text mb="32px" fontSize="20px" textAlign="center">
-            Adicionar Cartão
-          </Text>
-          <Image m="0 auto" src="/payment/multiple-cards.png"></Image>
-          <Box mt="30px">
-            <Text>Número do cartão</Text>
-            <Input
-              onChange={(e) =>
-                setCreditCard({
-                  ...crediCard,
-                  cardNumber: e.target.value,
-                })
-              }
-            ></Input>
-          </Box>
-          <Flex mt="18px">
-            <Box>
-              <Text>Data de validade</Text>
-              <Input
-                mr="22px"
-                onChange={(e) =>
-                  setCreditCard({
-                    ...crediCard,
-                    expiration: e.target.value,
-                  })
-                }
-              ></Input>
-            </Box>
-            <Box>
-              <Flex alignItems="center">
-                <Text>CVC</Text>
-                <Image ml="6px" src="/payment/question-mark.png" />
-              </Flex>
-              <Input
-                width="102px"
-                onChange={(e) =>
-                  setCreditCard({
-                    ...crediCard,
-                    cvc: e.target.value,
-                  })
-                }
-              ></Input>
-            </Box>
-          </Flex>
-          <Flex w="100%" m="0 auto" mt="33px">
-            <Button
-              onClick={() => setStep("confirmPayment")}
-              borderRadius="45px"
-              border="1px solid #dfdfdf"
-              bg="#fff"
-              _hover={{ bg: "" }}
-              m="0 auto"
-              height="48px"
-              textAlign="center"
-              width="123px"
-            >
-              Concluir
-            </Button>
-          </Flex>
-        </Box>
-              )} */}
-
-      {step === "loading" && (
+      {step === 'loading' && (
         <Flex
           w="100%"
           m="0 auto"
@@ -323,12 +257,10 @@ export function PaymentModal({ onClose }) {
             size="xl"
             mt="57px"
           />
-
           <Text
             fontSize="14px"
             mt="45px"
-            color="#A19D9D
-"
+            color="#A19D9D"
             fontWeight="bold"
           >
             Só um momento...

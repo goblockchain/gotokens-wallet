@@ -7,7 +7,8 @@ import {
   MenuItem,
   MenuList,
   Text,
-  Tooltip
+  Tooltip,
+  Center
 } from '@chakra-ui/react'
 import React from 'react'
 import Image from 'next/image'
@@ -64,7 +65,7 @@ export function NFTCardStore ({ data }: NftCardProps) {
         <Flex>
           <Menu placement="bottom" >
             {/* ml="auto" mr="10px" */}
-            <MenuButton fontSize="25px" fontWeight="bold" >
+            <MenuButton fontSize="25px" fontWeight="bold" color="#FFFFFF" >
                 ...
             </MenuButton>
             <MenuList ml="30px">
@@ -86,35 +87,37 @@ export function NFTCardStore ({ data }: NftCardProps) {
         width="max-content"
         onClick={() => goTo()}
         position="relative"
-        background="#fff"
+        background="transparent"
       >
-        <Flex>
-          {data.type === 'readOnly' ? (
-            <Image
-              height="269px"
-              width="201px"
-              src={data.nftCover ? data.nftCover : '/default-nft-cover.png'}
-              alt="nft"
-            />
-          ) : (
-            <Image
-              height="269px"
-              width="235px"
-              src={data.nftCover ? data.nftCover : '/default-nft-cover.png'}
-              alt="nft"
-            />
-          )}
+        <Flex mb="10px">
+          <Box
+            border="1px"
+            borderColor="#FFFFFF"
+            w="40px"
+            mr="10px"
+          >
+            <Box
+              borderTop="1px"
+              borderColor="#FFFFFF"
+              w="40px"
+              h="40px"
+              mt="230px"
+            >
+            </Box>
+          </Box>
+          <Image
+            height="269px"
+            width="235px"
+            src={data.nftCover ? data.nftCover : '/default-nft-cover.png'}
+            alt="nft"
+          />
         </Flex>
-
         <Flex
-          border="1.5px solid #e2e2e2"
-          background="#fff"
-          borderRadius="0 0 15px 15px"
-          p="18px 26px"
+          background="#000"
           flexDirection="column"
         >
-          <Flex background="#fff" width="100%" justifyContent="space-between">
-            <Box>
+          <Flex background="#000" width="100%" justifyContent="space-between" >
+            <Box border="1px" borderColor="#FFFFFF" w="100%">
               <Tooltip
                 fontWeight="bold"
                 bg="dark"
@@ -127,182 +130,70 @@ export function NFTCardStore ({ data }: NftCardProps) {
                   overflow="hidden"
                   textOverflow="ellipsis"
                   maxW="180px"
-                  color="#454545"
-                  fontSize="16px"
+                  color="#FFFF"
+                  p="5px 7px"
+                  fontFamily= "Roboto"
+                  fontStyle= "normal"
+                  fontWeight= "bold"
+                  fontSize= "18px"
+                  lineHeight= "21px"
                 >
                   {data.name || 'Título do NFT'}
                 </Heading>
               </Tooltip>
-            </Box>
-          </Flex>
-          {data.type !== 'readOnly' && (
-            <Flex mt="16px" justifyContent="space-between">
-              {data.marketplace?.type === 'fixedPrice' ? (
-                <Box>
-                  <Flex justifyContent="space-between" w="180px">
-                    <Box>
-                      <Text
-                        fontWeight= "300"
-                        fontSize="11px"
-                        lineHeight="12px"
-                        color="#454545"
-                      >
-                          PREÇO FIXO:
-                      </Text>
-                    </Box>
-                    <Box>
-                      <Text
-                        fontWeight= "300"
-                        fontSize="11px"
-                        lineHeight="12px"
-                        color="#454545"
-                      >
-                        {data.marketplace?.stockNft}
-                      </Text>
-                    </Box>
-                  </Flex>
-                  <Flex>
-                    <Text
-                      mt="7px"
-                      fontWeight= "bold"
-                      fontSize="11px"
-                      lineHeight="12px"
-                      color="#454545"
-                    >
-                      {data.marketplace?.fixedPrice}
-                    </Text>
-                    <Text
-                      mt="7px"
-                      fontWeight= "bold"
-                      fontSize="11px"
-                      lineHeight="12px"
-                      color="#A19D9D"
-                      ml="10px"
-                    >
-                      {data.marketplace?.PriceBRL}
-                    </Text>
-                    <Text
-                      mt="7px"
-                      fontWeight= "bold"
-                      fontSize="11px"
-                      lineHeight="12px"
-                      color="#454545"
-                      ml="35px"
-                    >
-                      {data.marketplace?.quantityNft}
-                    </Text>
-                  </Flex>
+              <Flex borderBottom="block" >
+                <Box
+                  borderTop="1px"
+                  borderColor="#FFFFFF"
+                  p="2px 5px"
+                  w="100%"
+                >
+                  <Text
+                    color="#FFFFFF"
+                    fontFamily= "Roboto"
+                    fontStyle= "normal"
+                    fontWeight= "bold"
+                    fontSize= "18px"
+                    lineHeight= "21px"
+                  >
+                    Cadumen
+                  </Text>
                 </Box>
-              ) : (
-                <>
-                  <Box>
-                    <Flex justifyContent="space-between" w="180px">
-                      <Box>
-                        <Text
-                          fontWeight= "300"
-                          fontSize="11px"
-                          lineHeight="12px"
-                          color="#454545"
-                        >
-                            LANCE MIN
-                        </Text>
-                      </Box>
-                      <Box>
-                        <Text
-                          fontWeight= "300"
-                          fontSize="11px"
-                          lineHeight="12px"
-                          color="#454545"
-                        >
-                          {data.marketplace?.about}
-                        </Text>
-                      </Box>
-                    </Flex>
-                    <Flex>
-                      <Text
-                        mt="7px"
-                        fontWeight= "bold"
-                        fontSize="11px"
-                        lineHeight="12px"
-                        color="#454545"
-                      >
-                        {data.marketplace?.fixedPrice}
-                      </Text>
-                      <Text
-                        mt="7px"
-                        fontWeight= "bold"
-                        fontSize="11px"
-                        lineHeight="12px"
-                        color="#A19D9D"
-                        ml="10px"
-                      >
-                        {data.marketplace?.PriceBRL}
-                      </Text>
-                      <Text
-                        mt="7px"
-                        fontWeight= "bold"
-                        fontSize="11px"
-                        lineHeight="12px"
-                        color="#454545"
-                        ml="15px"
-                      >
-                        {data.marketplace?.throw}
-                      </Text>
-                    </Flex>
-                  </Box>
-                  {data.marketplace?.type === 'timedAuction' && (
-                    <Box>
-                      <Text fontSize="12px" fontWeight="300">
-                          ACABA EM
-                      </Text>
-                      <Text fontWeight="bold" fontSize="12px">
-                        {data.marketplace?.finishesAt}
-                      </Text>
-                    </Box>
-                  )}
-                  {data.quantity === 'multiple' && (
-                    <Box>
-                      <Text fontSize="12px" fontWeight="300">
-                          Estoque
-                      </Text>
-                      <Text fontWeight="bold" fontSize="12px">
-                        {data.marketplace?.stock}
-                      </Text>
-                    </Box>
-                  )}
-                </>
-              )}
-            </Flex>
-          )}
+                <Center
+                  border="1px"
+                  borderBottom="0"
+                  borderRight="0"
+                  borderColor="#FFFFFF"
+                  p="0 5px"
+                >
+                  <Text
+                    color="#FFFFFF"
+                    fontFamily= "Roboto"
+                    fontStyle= "normal"
+                    fontWeight= "bold"
+                    fontSize= "11px"
+                    lineHeight="12px "
+                  >
+                    499/499
+                  </Text>
+                </Center>
+              </Flex>
+            </Box>
+            <Center border="1px" borderColor="#FFFFFF" p="0 10px" borderLeft="0">
+              <Text
+                color="#FFFFFF"
+                fontFamily= "Roboto"
+                fontStyle= "normal"
+                fontWeight= "bold"
+                fontSize= "10px"
+                lineHeight="12px "
+                w="40px"
+              >
+                0.2 ETH
+              </Text>
+            </Center>
+          </Flex>
         </Flex>
-        {data.quantity === 'multiple' && (
-          <Box top="0" w="100%" h="100%" position="absolute">
-            <Box
-              zIndex="-1"
-              transition="all 250ms"
-              w="100%"
-              h="100%"
-              position="absolute"
-              borderRadius="15px"
-              border="1px solid"
-              borderColor="#e2e2e2"
-              top="2px"
-              right="-4px"
-            ></Box>
-            <Box
-              zIndex="-1"
-              transition="all 250ms"
-              w="100%"
-              h="100%"
-              position="absolute"
-              borderRadius="15px"
-              border="1px solid"
-              borderColor="#e2e2e2"
-              top="6px"
-              right="-8px"
-            ></Box>
-          </Box>
-        )}
       </Box>
     </Box>
   )
