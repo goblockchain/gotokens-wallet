@@ -1,28 +1,34 @@
-import { Button } from "@chakra-ui/button"
-import { Image } from "@chakra-ui/image"
-import { Box, Flex, Text } from "@chakra-ui/layout"
-import { Spinner } from "@chakra-ui/spinner"
-import React, { useEffect, useState } from "react"
-import { Input } from ".."
+import { Button } from '@chakra-ui/button'
+import { Image } from '@chakra-ui/image'
+import { Box, Flex, Text } from '@chakra-ui/layout'
+import { Spinner } from '@chakra-ui/spinner'
+import React, { useEffect, useState } from 'react'
+
+import { useRouter } from 'next/router'
 
 export function PaymentModal({ onClose }) {
   const [step, setStep] = useState<
-    "paymentType" | "confirmPayment" | "cryptoCheckout" | "loading"
-  >("paymentType")
-  const [paymentType, setPaymentType] = useState<"credit" | "crypto">("credit")
-  const [selectedCurreny, setSelectedCurrency] = useState("FTR")
+  'paymentType' | 'confirmPayment' | 'cryptoCheckout' | 'loading'
+  >('paymentType')
+  const [paymentType, setPaymentType] = useState<'credit' | 'crypto'>('credit')
+  const [selectedCurreny, setSelectedCurrency] = useState('FTR')
 
   useEffect(() => {
-    if (step === "loading") {
+    if (step === 'loading') {
       setInterval(onClose, 1500)
     }
 
     console.log(step)
   })
+  const router = useRouter()
 
+    function double () {
+      setStep('loading')
+      router.push('/nftpurchased')
+    }
   return (
     <>
-      {step === "paymentType" && (
+      {step === 'paymentType' && (
         <Box w="100%" m="0 auto">
           <Text fontSize="20px" textAlign="center">
             Pagamento
@@ -113,9 +119,9 @@ export function PaymentModal({ onClose }) {
           <Flex w="100%" m="0 auto" mt="20px">
             <Button
               onClick={() =>
-                paymentType === "credit"
-                  ? setStep("confirmPayment")
-                  : setStep("cryptoCheckout")
+                paymentType === 'credit'
+                  ? setStep('confirmPayment')
+                  : setStep('cryptoCheckout')
               }
               borderRadius="45px"
               border="1px solid #dfdfdf"
@@ -131,7 +137,7 @@ export function PaymentModal({ onClose }) {
           </Flex>
         </Box>
       )}
-      {step === "cryptoCheckout" && (
+      {step === 'cryptoCheckout' && (
         <Box w="100%" m="0 auto">
           <Text mb="32px" fontSize="20px" textAlign="center">
             Pagamento
@@ -144,8 +150,8 @@ export function PaymentModal({ onClose }) {
               border="1px solid #dfdfdf"
               height="52px"
               width="82px"
-              _hover={{ bg: "" }}
-              _focus={{ outline: "0" }}
+              // _hover={{ bg: "" }}
+              // _focus={{ outline: "0" }}
               borderColor={selectedCurreny === "FTR" ? "blue.500" : "#dfdfdf"}
               onClick={() => setSelectedCurrency("FTR")}
             >
@@ -223,7 +229,7 @@ export function PaymentModal({ onClose }) {
 
           <Flex w="100%" m="0 auto" mt="33px">
             <Button
-              onClick={() => setStep('loading')}
+              onClick={() => double() }
               borderRadius="45px"
               border="1px solid #dfdfdf"
               bg="#fff"

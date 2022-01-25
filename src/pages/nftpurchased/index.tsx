@@ -6,8 +6,8 @@ import {
   Icon,
   Badge,
   Center,
-  Image as ChakraImage,
-} from "@chakra-ui/react"
+  Image as ChakraImage
+} from '@chakra-ui/react'
 
 import NoNavNoFooterLayout from '../../layouts/noNavNoFooterLayout'
 import MetamaskImg from '../../../public/MetamaskImg.png'
@@ -15,8 +15,8 @@ import bg from '../../../public/bgNftpurchased.png'
 
 import { FaAngleLeft } from 'react-icons/fa'
 
-import { useRouter } from "next/router"
-import { Copy } from "../../styles/CustomIcons"
+import { useRouter } from 'next/router'
+import { Copy } from '../../styles/CustomIcons'
 
 export default function nftpurchased() {
 const router = useRouter()

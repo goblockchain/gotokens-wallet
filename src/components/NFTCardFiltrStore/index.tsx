@@ -39,10 +39,8 @@ interface NftCardProps {
     }
   }
 }
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function NFTCardStore ({ data }: NftCardProps) {
   const router = useRouter()
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   function goTo (hash: string = 'hash') {
     if (data.type === 'preview') return
     router.push(`/nft/${hash}`)

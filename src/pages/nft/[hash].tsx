@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import {
   Box,
   Flex,
@@ -9,49 +9,47 @@ import {
   Image,
   Badge,
   Center,
-  Image as ChakraImage,
-} from "@chakra-ui/react"
+  Image as ChakraImage
+} from '@chakra-ui/react'
 
-import NoNavNoFooterLayout from "../../layouts/noNavNoFooterLayout"
+// import ReactElement  from 'react'
+
+import NoNavNoFooterLayout from '../../layouts/noNavNoFooterLayout'
 import MetamaskImg from '../../../public/MetamaskImg.png'
-import nftCover from "../../../public/default-nft-cover-home.png"
-import fundoNft from "../../../public/space/fundoNft.png"
+import nftCover from '../../../public/default-nft-cover-home.png'
+import fundoNft from '../../../public/space/fundoNft.png'
 
 import { FaAngleLeft } from 'react-icons/fa'
 import { BsCart2 } from 'react-icons/bs'
 
+import { useNotification } from '../../hooks/NotificationContext'
 
-import { useNotification } from "../../hooks/NotificationContext"
+import { Copy } from '../../styles/CustomIcons'
+import { useRouter } from 'next/router'
+import { PaymentModal } from '../../components/payment-modal'
 
-import Head from "next/head"
-import { Copy } from "../../styles/CustomIcons"
-import { useRouter } from "next/router"
-import { PaymentModal } from "../../components/payment-modal"
-
-export default function nft() {
-  const type = "single"
-
+export default function nft () {
   const filtrData = {
-    title: "Natiruts Sound System",
-    image: "/filtr/natiruts-nft.png",
-    creator: "Filtr Store",
-    price: "15 FiltrTokens",
+    title: 'Natiruts Sound System',
+    image: '/filtr/natiruts-nft.png',
+    creator: 'Filtr Store',
+    price: '15 FiltrTokens',
   }
   const nftData = {
-    title: "The Communicador",
+    title: 'The Communicador',
     image: nftCover.src,
-    creator: "METASPRAY",
-    price: "15 ETH",
+    creator: 'METASPRAY',
+    price: '15 ETH'
   }
   const router = useRouter()
   const isRouteReady = router.isReady
-  const data = router.asPath.includes("Natiruts") ? filtrData : nftData
+  const data = router.asPath.includes('Natiruts') ? filtrData : nftData
 
   const { emitModal } = useNotification()
   const triggerPaymentModal = () => {
     emitModal({
       message: PaymentModal,
-      options: { size: "sm", isCentered: true },
+      options: { size: 'sm', isCentered: true }
     })
   }
   return (
@@ -237,12 +235,6 @@ export default function nft() {
                     </Flex>
                   </ChakraButton>
                 </Box>
-                {type === 'multiple' && (
-                  <Box>
-                    <Text fontWeight="normal">ESTOQUE</Text>
-                    <Text fontWeight="bold"> 10/10</Text>
-                  </Box>
-                )}
               </Flex>
             </Box>
           </>
@@ -257,6 +249,6 @@ export default function nft() {
   )
 }
 
-nft.getLayout = function getLayout(page: ReactElement) {
+nft.getLayout = function getLayout(page: SVGAElement) {
   return <NoNavNoFooterLayout>{page}</NoNavNoFooterLayout>
 }

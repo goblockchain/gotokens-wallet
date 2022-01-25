@@ -1,10 +1,10 @@
-import { Box, Flex, Text, Image } from "@chakra-ui/react"
-import React from "react"
-import logo from "../../../public/GoBlockchainImg.png"
+import { Box, Flex, Text, Image } from '@chakra-ui/react'
+import React from 'react'
+import logo from '../../../public/GoBlockchainImg.png'
 
-import Link from "next/link"
+import Link from 'next/link'
 
-export function Footer() {
+export function Footer () {
   return (
     <Box
       width="100%"
@@ -21,21 +21,21 @@ export function Footer() {
         fontSize="14px"
         alignItems="center"
       >
-        <Text fontWeight="normal" mb={{ base: "20px", md: "0" }}>
+        <Text fontWeight="normal" mb={{ base: '20px', md: '0' }}>
           © GoTokens. Todos os direitos reservados.
         </Text>
-        <Flex mb={{ base: "20px", md: "0" }} alignItems="center">
+        <Flex mb={{ base: '20px', md: '0' }} alignItems="center">
           <Text mr="12px" fontWeight="normal">
             Um produto feito com carinho pela
           </Text>
           <Flex
-          cursor="pointer"
-          onClick={() =>
-                  window.open(
-                    "https://goblockchain.io/",
-                    "_blank"
-                  )
-                }>
+            cursor="pointer"
+            onClick={() =>
+              window.open(
+                'https://goblockchain.io/',
+                '_blank'
+              )
+            }>
             <Image src={logo.src}></Image>
           </Flex>
         </Flex>
