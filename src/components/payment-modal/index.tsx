@@ -35,7 +35,7 @@ export function PaymentModal({ onClose }) {
           </Text>
           <Box mt="32px" w="100%">
             <Button
-              onClick={() => setPaymentType("crypto")}
+              onClick={() => setPaymentType('crypto')}
               transition="all 500ms"
               borderRadius="10px"
               m="0 auto"
@@ -45,7 +45,7 @@ export function PaymentModal({ onClose }) {
               p="19px"
               w="100%"
               border="1px solid #dfdfdf"
-              borderColor={paymentType === "crypto" && "yellow.500"}
+              borderColor={paymentType === "crypto" && "blue.500"}
               bg="0"
               _focus={{
                 outline: "0",
@@ -126,7 +126,7 @@ export function PaymentModal({ onClose }) {
               borderRadius="45px"
               border="1px solid #dfdfdf"
               bg="#fff"
-              _hover={{ bg: "" }}
+              // _hover={{ bg: "" }}
               m="0 auto"
               height="48px"
               textAlign="center"
@@ -259,7 +259,7 @@ export function PaymentModal({ onClose }) {
             thickness="6px"
             speed="1s"
             emptyColor="#DFDFDF"
-            color="yellow.500"
+            color="blue.500"
             size="xl"
             mt="57px"
           />

@@ -6,11 +6,9 @@ import {
   Text,
   Button as ChakraButton,
   Icon,
-  Image,
   Badge,
   Center,
-  Image as ChakraImage,
-  Iframe 
+  Image as ChakraImage
 } from '@chakra-ui/react'
 
 // import ReactElement  from 'react'
@@ -18,7 +16,6 @@ import {
 import NoNavNoFooterLayout from '../../layouts/noNavNoFooterLayout'
 import MetamaskImg from '../../../public/MetamaskImg.png'
 import nftCover from '../../../public/default-nft-cover-home.png'
-import fundoNft from '../../../public/space/fundoNft.png'
 
 import { FaAngleLeft } from 'react-icons/fa'
 import { BsCart2 } from 'react-icons/bs'
@@ -94,7 +91,7 @@ export default function nft () {
                 p="0 10px"
                 border="1px solid #FFFFFF"
                 ml="20px"
-                onClick={() => router.push('/')}
+                onClick={async () => router.push('/')}
                 cursor="pointer"
               >
                 <FaAngleLeft color='#FFFF'/>
