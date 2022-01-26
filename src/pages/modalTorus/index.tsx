@@ -11,7 +11,7 @@ import {
 import NoNavNoFooterLayout from '../../layouts/noNavNoFooterLayout'
 
 export default function torus () {
-  const [account, setAccount] = useState()
+  const [account, setAccount] = useState({})
 
   const onClickLogin = async (e) => {
     e.preventDefault()
@@ -22,7 +22,7 @@ export default function torus () {
     })
     await torus.login()
 
-    const web3 = new Web3(torus.provider)
+    const web3 = new Web3((torus.provider as any))
     const address = (await web3.eth.getAccounts())[0]
     const balance = await web3.eth.getBalance(address)
     setAccount({ address, balance });
