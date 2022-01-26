@@ -5,53 +5,50 @@ import{
   Heading,
   Image as ChakraImage,
   Center
-} from "@chakra-ui/react"
+} from '@chakra-ui/react'
 
-import MetamaskImg from '../../public/MetamaskImg.png'
+import React from 'react'
+
+import Nav from '../components/NavSoLogin'
+
 import bg from '../../public/fundoHome.png'
 
-import { Button } from "../components"
-import { Footer } from "../components/NFTCardFooter/Footer"
+import { Button } from '../components'
+import { Footer } from '../components/NFTCardFooter/Footer'
 
-import { useRouter } from "next/router"
-  
+import { useRouter } from 'next/router'
+
 export function SpaceLayoutFiltr({ children }) {
   const router = useRouter()
+  
   function handleQuery(tab) {
     router.query.tab = tab
     router.push(router)
   }
   return (
     <Box bg="black">
+      <Nav/>
       <Center position="relative" zIndex="1">
         <Box textAlign="center" position="absolute">
           <Heading fontSize="35px"
             lineHeight="45px"
             fontWeight="extrabold"
-            mt="30px"
+            mt={{ base: '-50px', md: '-82px', xl: '-105px' }}
             color="#FFFFFF"
           >
           METASPRAY
           </Heading>
         </Box>
-        <Box ml="80%" cursor="pointer">
-          <Center
-            mt="20px"
-            bg="#FFFFFF"
-            w="70px"
-            h="70px"
-            borderRadius="50%"
-          >
-            <ChakraImage
-              alt="Metamask"
-              src={MetamaskImg.src}
-            >
-            </ChakraImage>
-          </Center>
-        </Box>
       </Center>
-      <ChakraImage mt="-85px" w="100%" src={bg.src}></ChakraImage>
-      <Box mt="-290px" px={{ base: '22px', md: '52px', xl: '32px', '2xl': '72px' }}>
+      <ChakraImage
+        mt={{ base: '-20px', md: '-82px', xl: '-150px' }}
+        w="100%"
+        src={bg.src}
+      ></ChakraImage>
+      <Box
+        mt={{ base: '2px', md: '-52px', xl: '-290px' }}
+        px={{ base: '22px', md: '52px', xl: '32px', '2xl': '72px' }}
+      >
         <Box textAlign="center">
           <Heading
             color="#FFFFFF"
@@ -95,4 +92,3 @@ export function SpaceLayoutFiltr({ children }) {
     </Box>
   )
 }
-  

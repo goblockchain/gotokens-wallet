@@ -4,7 +4,7 @@ import {
 
 import { NFTCardStore } from '../components/NFTCardFiltrStore'
 import Head from 'next/head'
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement } from 'react'
 import { SpaceLayoutFiltr } from '../layouts/spaceLayoutFiltr'
 
 export default function space () {

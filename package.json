@@ -17,6 +17,7 @@
     "@chakra-ui/theme-tools": "^1.2.0",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@toruslabs/torus-embed": "^1.20.2",
     "axios": "^0.24.0",
     "cpf-cnpj-validator": "^1.0.3",
     "express": "^4.17.1",
@@ -29,7 +30,8 @@
     "react-hook-form": "^7.10.1",
     "react-icons": "^4.2.0",
     "recharts": "^2.1.2",
-    "validator": "^13.6.0"
+    "validator": "^13.6.0",
+    "web3": "^1.7.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",

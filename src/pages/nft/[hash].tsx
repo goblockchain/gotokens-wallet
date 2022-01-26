@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Box,
   Flex,
@@ -7,14 +6,14 @@ import {
   Button as ChakraButton,
   Icon,
   Badge,
-  Center,
-  Image as ChakraImage
+  Center
 } from '@chakra-ui/react'
 
-// import ReactElement  from 'react'
+import React from 'react'
+
+import Nav from '../../components/NavSoLogin'
 
 import NoNavNoFooterLayout from '../../layouts/noNavNoFooterLayout'
-import MetamaskImg from '../../../public/MetamaskImg.png'
 import nftCover from '../../../public/default-nft-cover-home.png'
 
 import { FaAngleLeft } from 'react-icons/fa'
@@ -51,37 +50,9 @@ export default function nft () {
     })
   }
   return (
-    <Box width="100%" height="100%">
-      <Center
-        position="relative" bg="#0A03AB"
-      >
-        <Box textAlign="center" position="absolute">
-          <Heading
-            fontSize="35px"
-            lineHeight="45px"
-            fontWeight="extrabold"
-            mt="30px"
-            color="#FFFFFF"
-          >
-          </Heading>
-        </Box>
-        <Box ml="80%" cursor="pointer">
-          <Center
-            mt="20px"
-            bg="#FFFFFF"
-            w="68px"
-            h="68px"
-            borderRadius="50%"
-          >
-            <ChakraImage
-              alt="Metamask"
-              src={MetamaskImg.src}
-            >
-            </ChakraImage>
-          </Center>
-        </Box>
-      </Center>
-      <Flex flexWrap="wrap" maxW="1367px" bg="#0A03AB">
+    <Box width="100%" height="100%" bg="#0A03AB">
+      <Nav/>
+      <Flex flexWrap="wrap" maxW="1367px" justifyContent="space-around">
         {isRouteReady && (
           <>
             <Box>
@@ -96,8 +67,10 @@ export default function nft () {
               >
                 <FaAngleLeft color='#FFFF'/>
               </Center>
-              <Box p="0 100px">
-                <Flex height="380px">
+              <Box
+                p="0 100px"
+              >
+                <Flex height="380px" w="100%">
                   <Box
                     border="1px"
                     borderColor="#FFFFFF"
@@ -114,7 +87,7 @@ export default function nft () {
                   </Box>
                   <Box
                     height="380px"
-                    width="380px"
+                    // width="380px"
                     bg="#FFFFFF"
                   >
                     <iframe
@@ -126,7 +99,12 @@ export default function nft () {
                 </Flex>
               </Box>
             </Box>
-            <Box minW="450px" p="0 60px" flex="1" borderLeft="1px solid #DFDFDF">
+            <Box
+              // minW="450px"
+              p="0 60px"
+              flex="1"
+              borderLeft="1px solid #DFDFDF"
+            >
               <Heading mt="25px"
                 fontFamily= "PT Serif"
                 fontStyle= "Bold"
@@ -243,11 +221,6 @@ export default function nft () {
           </>
         )}
       </Flex>
-      <Box
-        bg="#0A03AB"
-        h="138px"
-      >
-      </Box>
     </Box>
   )
 }
