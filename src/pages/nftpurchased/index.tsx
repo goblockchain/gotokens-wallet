@@ -22,24 +22,35 @@ import { Copy } from '../../styles/CustomIcons'
 export default function nftpurchased() {
 const router = useRouter()
   return (
-    <Box width="100%" height="100%" bgImage={`url(${bg.src})`}>
+    <Box width="100%" height="100%" bgImage={`url(${bg.src})`} >
       <Nav/>
-      <Flex flexWrap="wrap" maxW="1367px">
+      <Flex
+        flexWrap="wrap"
+        maxW="1367px"
+        justifyContent="space-around"
+        mb={{ base: '138px', md: '1px', xl: '1px' }}
+      >
         <Box>
           <Center
             w="36px"
             h="36px"
             p="0 10px"
             border="1px solid #DFDFDF"
-            ml="20px"
             borderRadius="12px"
             bg="#FFFFFF"
-            onClick={() => router.push('/')}
+            onClick={async () => router.push('/')}
             cursor="pointer"
+            ml={{ base: '10px', md: '15px', xl: '20px' }}
+            _hover={{
+              transform: 'translateY(-4px)'
+            }}
           >
             <FaAngleLeft color='#000000'/>
           </Center>
-          <Box ml="600px">
+          <Box
+            mt="20px"
+            ml={{ base: '10px', md: '300px', xl: '600px' }}
+          >
             <Flex height="380px">
               <Box
                 border="1px"
@@ -58,9 +69,11 @@ const router = useRouter()
             </Flex>
           </Box>
         </Box>
-        <Box minW="450px" p="0 60px" flex="1" >
+        <Box
+          p="0 60px"
+          flex="1"
+        >
           <Text
-            mt="100px"
             mb="25px"
             color="#FFFFFF"
             fontFamily= "Roboto"
@@ -68,6 +81,7 @@ const router = useRouter()
             fontSize= "16px"
             lineHeight= "19px"
             fontWeight="thin"
+            mt={{ base: '70px', md: '85px', xl: '100px' }}
           >
             Transaction complete, you legend!
           </Text>
@@ -130,10 +144,6 @@ const router = useRouter()
           </Flex>
         </Box>
       </Flex>
-      <Box
-        h="138px"
-      >
-      </Box>
     </Box>
   )
 }
