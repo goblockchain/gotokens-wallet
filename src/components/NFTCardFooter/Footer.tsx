@@ -24,10 +24,10 @@ export function Footer() {
           <Text
             fontWeight="300"
             color="#FFFFFF"
-            FontFamily= "Roboto"
-            FontStyle= "Bold"
-            FontSize= "10px"
-            LineHeight= "12px"
+            fontFamily= "Roboto"
+            fontStyle= "Bold"
+            fontSize= "10px"
+            lineHeight= "12px"
           >
             Terms & Conditions
           </Text>

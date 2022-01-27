@@ -1,44 +1,29 @@
-import {
-  Box,
-  Text,
-  Center,
-  Image as ChakraImage,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalBody,
-  useDisclosure
-} from '@chakra-ui/react'
-
+import { Image as ChakraImage, Text, Box } from '@chakra-ui/react'
 import { Button } from '@chakra-ui/button'
 import { Flex } from '@chakra-ui/layout'
 import React, { useState } from 'react'
 
-import MetamaskImg from '../../../public/MetamaskImg.png'
+import Metamask from '../../../public/MetamaskImg.png'
+import { FcKey } from 'react-icons/fc'
 
 export default function Nav() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const [size, setSize] = React.useState('xl')
-
-  const handleSizeClick = (newSize) => {
-    setSize(newSize)
-    onOpen()
-  }
-
-  const sizes = ['xl']
-
   const [isConnected, setConnectedStatus] = useState(false)
   const [status, setStatus] = useState('')
   const [walletAddress, setWallet] = useState('')
 
+  const connect = {
+    conectar: ' MetaMask'
+  }
+
   const connectWalletPressed = async () => {
-    if (isConnected) {return alert(
-      'Conta já conectada! ' +
+    if (isConnected) {
+      return alert(
+        'Conta já conectada! ' +
         String(walletAddress).substring(0, 5) +
         '...' +
         String(walletAddress).substring(38)
-    )
-}
+      )
+    }
 
     const walletResponse = await connectWallet()
     setConnectedStatus(walletResponse.connectedStatus)
@@ -49,13 +34,13 @@ export default function Nav() {
   const connectWallet = async () => {
     if (window.ethereum) {
       try {
-        const address = await window.ethereum.enable() 
+        const address = await window.ethereum.enable()
         const obj = {
           connectedStatus: true,
           status: 'Conectado',
           address: address
         }
-        return obj;
+        return obj
       } catch (error) {
         return {
           connectedStatus: false,
@@ -84,75 +69,41 @@ export default function Nav() {
         position="relative"
         zIndex="1"
       >
-        {sizes.map((size) => (
-          <Button
-            _hover={{
-              transform: 'translateY(-4px)'
-            }}
-            bg="#DFDFDF"
-            color="000"
-            borderRadius="30px"
-            p="10 5px"
-            onClick={() => handleSizeClick(size)}
-            key={size}
-            m={4}
-          >
-                Connect Wallet
-          </Button>
-        ))}
-      </Flex>
-      <Modal onClose={onClose} size={size} isOpen={isOpen} >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalBody>
-            <Flex w="100%" h="100%">
-              <Center
-                flexDirection="column"
-                textAlign="center"
-                cursor="pointer"
-                bg="#FFFFFF"
+        {connectWalletPressed && (
+          <>
+            <Box display="flex" flexDir="column" alignItems="end" >
+              <Button
                 _hover={{
-                  bg: '#DFDFDF'
+                  transform: 'translateY(-4px)'
                 }}
+                bg="#DFDFDF"
+                color="000"
+                borderRadius="30px"
+                p="10 5px"
                 onClick={connectWalletPressed}
-                p="0 10px"
-                borderRadius="8px"
               >
+                {status}{connect.conectar}
                 <ChakraImage
+                  ml="5px"
                   alt="Metamask"
-                  src={MetamaskImg.src}
-                  w="35px"
-                  h="35px"
-                  mt="15px"
+                  src={Metamask.src}
                 >
                 </ChakraImage>
-                <Text
-                  mt="8px"
-                  fontSize="25px"
-                  color="#291f1f"
-                >
-                  MetaMask
-                </Text>
-                <Text
-                  mt="8px"
-                  fontSize="18px"
-                  color="#857d7d"
-                  fontWeight="thin"
-                >
-                  Connect to your MetaMask Wallet
-                </Text>
-              </Center>
-              <Box
-                textAlign="center"
-                ml="10px"
-              >
-                <Text>Torus</Text>
-                <Text>Connect to your Torus accont</Text>
-              </Box>
-            </Flex>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+              </Button>
+              {isConnected &&
+                <Flex>
+                  <Text color="#FFFFFF" mt="5px">
+                    {String(walletAddress).substring(0, 5) + '...' + String(walletAddress).substring(38)}
+                  </Text>
+                  <Box mt="5px" ml="3px" cursor="pointer">
+                    <FcKey size={22}/>
+                  </Box>
+                </Flex>
+              }
+            </Box>
+          </>
+        )}
+      </Flex>
     </>
   )
 }

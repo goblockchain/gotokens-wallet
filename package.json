@@ -17,7 +17,6 @@
     "@chakra-ui/theme-tools": "^1.2.0",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@toruslabs/torus-embed": "^1.20.2",
     "axios": "^0.24.0",
     "cpf-cnpj-validator": "^1.0.3",
     "express": "^4.17.1",

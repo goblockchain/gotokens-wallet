@@ -5,12 +5,13 @@ import {
   Text,
   Icon,
   Badge,
-  Center,
-  Image as ChakraImage
+  Center
 } from '@chakra-ui/react'
 
+import Nav from '../../components/NavSoLogin'
+
 import NoNavNoFooterLayout from '../../layouts/noNavNoFooterLayout'
-import MetamaskImg from '../../../public/MetamaskImg.png'
+
 import bg from '../../../public/bgNftpurchased.png'
 
 import { FaAngleLeft } from 'react-icons/fa'
@@ -22,26 +23,7 @@ export default function nftpurchased() {
 const router = useRouter()
   return (
     <Box width="100%" height="100%" bgImage={`url(${bg.src})`}>
-      <Center
-        position="relative"
-      >
-        <Box textAlign="center" position="absolute"></Box>
-        <Box ml="80%" cursor="pointer">
-          <Center
-            mt="20px"
-            bg="#FFFFFF"
-            w="68px"
-            h="68px"
-            borderRadius="50%"
-          >
-            <ChakraImage
-              alt="Metamask"
-              src={MetamaskImg.src}
-            >
-            </ChakraImage>
-          </Center>
-        </Box>
-      </Center>
+      <Nav/>
       <Flex flexWrap="wrap" maxW="1367px">
         <Box>
           <Center
