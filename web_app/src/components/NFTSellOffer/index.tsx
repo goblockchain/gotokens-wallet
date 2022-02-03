@@ -10,6 +10,8 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import axios from 'axios';
 
+import { useRouter } from 'next/router'
+
 interface NftCardProps {
   data: {
     amount: string
@@ -38,6 +40,13 @@ export function NFTSellOffer ({ data }: NftCardProps) {
     fetchEmployees();
   }, []);
 
+  const router = useRouter()
+  function goTo (hash: string = 'hash') {
+    if (data.itemId === 'preview') return
+    router.push(`/nft/${hash}`)
+  }
+
+
   return (
     <Box background="0" position="relative"
       _hover={
@@ -52,6 +61,7 @@ export function NFTSellOffer ({ data }: NftCardProps) {
         onClick={(e) => console.log(data)}
         position="relative"
         background="transparent"
+        //onClick={() => goTo()}
       >
         <Flex mb="10px">
           <Box

@@ -39,7 +39,7 @@ export default function home() {
       </Head>
       {
         loading ? (
-          <div color="#FFFFFF">...Data Loading.....</div>
+          <div>...Data Loading.....</div>
         ) : (
           <SimpleGrid
             mt="67px"

@@ -10,11 +10,15 @@ import {
   Tooltip,
   Center
 } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
+import { Button } from '../../components'
 import Image from 'next/image'
 import { FaCode } from 'react-icons/fa'
 
 import { useRouter } from 'next/router'
+
+import axios from 'axios';
 
 interface NftCardProps {
   data: {
@@ -36,10 +40,35 @@ interface NftCardProps {
       currentBid?: number | string
       starsAt?: number | string
       finishesAt?: number | string
+      amount: string
+
+      tokenId: string
+      createTime: string
+      itemId: string
+      price: string
+      seller: string
+      contract: object
+      accounts: string
     }
   }
 }
 export function NFTCardStore ({ data }: NftCardProps) {
+
+  const [nftData, setNftData] = useState({});
+
+  async function fetchEmployees() {
+    const result = await data.contract.methods.token_uri(data.tokenId).call(); 
+    try {
+      let { data } = await axios.get(result);
+      console.log(data);
+      setNftData(data);
+    } catch (error) {}
+  }
+
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
+
   const router = useRouter()
   function goTo (hash: string = 'hash') {
     if (data.type === 'preview') return
@@ -83,7 +112,7 @@ export function NFTCardStore ({ data }: NftCardProps) {
 
       <Box
         width="max-content"
-        onClick={() => goTo()}
+        onClick={(e) => console.log(data)}
         position="relative"
         background="transparent"
       >
@@ -103,12 +132,13 @@ export function NFTCardStore ({ data }: NftCardProps) {
             >
             </Box>
           </Box>
-          <Image
+          {/* <Image
             height="269px"
             width="235px"
-            src={data.nftCover ? data.nftCover : '/default-nft-cover.png'}
+            src={nftData.url ? nftData.url : '/default-nft-cover.png'}
             alt="nft"
-          />
+          /> */}
+          <iframe src={nftData.url} width={'100%'}></iframe>
         </Flex>
         <Flex
           background="#000"
@@ -120,7 +150,8 @@ export function NFTCardStore ({ data }: NftCardProps) {
                 fontWeight="bold"
                 bg="dark"
                 aria-label="A tooltip"
-                label={data.name}
+                //label={data.name}
+                label={nftData.name}
                 hasArrow
               >
                 <Heading
@@ -136,7 +167,8 @@ export function NFTCardStore ({ data }: NftCardProps) {
                   fontSize= "18px"
                   lineHeight= "21px"
                 >
-                  {data.name || 'Título do NFT'}
+                  {/* {data.name || 'Título do NFT'} */}
+                  {nftData.name || 'Título do NFT'}
                 </Heading>
               </Tooltip>
               <Flex borderBottom="block" >
@@ -154,7 +186,8 @@ export function NFTCardStore ({ data }: NftCardProps) {
                     fontSize= "18px"
                     lineHeight= "21px"
                   >
-                    Cadumen
+                    {/* Cadumen */}
+                    {nftData.checksum}
                   </Text>
                 </Box>
                 <Center
@@ -172,7 +205,8 @@ export function NFTCardStore ({ data }: NftCardProps) {
                     fontSize= "11px"
                     lineHeight="12px "
                   >
-                    499/499
+                    {/* 499/499 */}
+                    {data.amount}
                   </Text>
                 </Center>
               </Flex>
@@ -187,10 +221,20 @@ export function NFTCardStore ({ data }: NftCardProps) {
                 lineHeight="12px "
                 w="40px"
               >
-                0.2 ETH
+                { (parseFloat(data.price) / (10 ** 18)).toFixed(5) } ETH
               </Text>
             </Center>
           </Flex>
+          <Box 
+            mt="10px"
+            justfyContent="end"
+          >
+            <Button
+              onClick={() => goTo()}
+            >
+              Comprar
+            </Button>
+          </Box>
         </Flex>
       </Box>
     </Box>

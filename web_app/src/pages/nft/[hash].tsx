@@ -12,10 +12,9 @@ import {
 import React from 'react'
 
 import Nav from '../../components/NavSoLogin'
-
 import NoNavNoFooterLayout from '../../layouts/noNavNoFooterLayout'
-import nftCover from '../../../public/default-nft-cover-home.png'
 
+import nftCover from '../../../public/default-nft-cover-home.png'
 import { FaAngleLeft } from 'react-icons/fa'
 import { BsCart2 } from 'react-icons/bs'
 
