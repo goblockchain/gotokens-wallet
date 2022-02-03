@@ -5,20 +5,37 @@ import{
   Heading,
   Image as ChakraImage,
   Center
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 
-import React from 'react'
-
-import Nav from '../components/NavSoLogin'
-
-import bg from '../../public/fundoHome.png'
-
-import { Button } from '../components'
 import { Footer } from '../components/NFTCardFooter/Footer'
-
+import GoBlockchain from '../contracts/GoBlockchain';
+import React, { useEffect, useState } from 'react'
+import Nav from '../components/NavSoLogin'
+import bg from '../../public/fundoHome.png'
 import { useRouter } from 'next/router'
+import { Button } from '../components'
+import Web3 from 'web3';
+
 
 export function SpaceLayoutFiltr({ children }) {
+  const [account, setAccount] = useState('');
+  const [contract, setContract] = useState({});
+
+  useEffect(() => {
+    async function load() {
+      let ethereum = window['ethereum'];
+      let accounts = await ethereum.request({ method: 'eth_accounts' });
+      setAccount(accounts[0]);
+      let newWeb3 = window['web3'];
+      const web3 = new Web3(newWeb3.currentProvider);
+      await GoBlockchain.setProvider(web3.currentProvider);
+      let deployed = await GoBlockchain.deployed();
+      const contract_base = await new web3.eth.Contract(deployed.abi, deployed.address);
+      setContract(contract_base);
+    }
+    
+    load();
+  }, []);
   const router = useRouter()
   
   function handleQuery(tab) {

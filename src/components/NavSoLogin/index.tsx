@@ -32,9 +32,10 @@ export default function Nav() {
   }
 
   const connectWallet = async () => {
-    if (window.ethereum) {
+    const ethereum = window["ethereum"];
+    if (ethereum) {
       try {
-        const address = await window.ethereum.enable()
+        const address = await ethereum.enable()
         const obj = {
           connectedStatus: true,
           status: 'Conectado',
