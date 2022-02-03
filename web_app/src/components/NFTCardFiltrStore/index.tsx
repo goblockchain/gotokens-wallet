@@ -53,7 +53,6 @@ interface NftCardProps {
   }
 }
 export function NFTCardStore ({ data }: NftCardProps) {
-
   const [nftData, setNftData] = useState({});
 
   async function fetchEmployees() {
@@ -85,11 +84,11 @@ export function NFTCardStore ({ data }: NftCardProps) {
         }
       }
       transition="all 500ms"
-      m="15px"
+      m={{ base: '0px', md: '5px', xl: '15px' }}
       width="max-content"
     >
       {data.type !== 'preview' && (
-        <Flex>
+        <Flex ml="7px">
           <Menu placement="bottom" >
             {/* ml="auto" mr="10px" */}
             <MenuButton fontSize="25px" fontWeight="bold" color="#FFFFFF" >
@@ -150,7 +149,7 @@ export function NFTCardStore ({ data }: NftCardProps) {
                 fontWeight="bold"
                 bg="dark"
                 aria-label="A tooltip"
-                //label={data.name}
+                // label={data.name}
                 label={nftData.name}
                 hasArrow
               >
@@ -186,8 +185,10 @@ export function NFTCardStore ({ data }: NftCardProps) {
                     fontSize= "18px"
                     lineHeight= "21px"
                   >
-                    {/* Cadumen */}
-                    {nftData.checksum}
+                    {/* {nftData.checksum} */}
+                    {String(nftData.checksum).substring(0, 23) +
+                      '...' +
+                      String(nftData.checksum).substring(38)}
                   </Text>
                 </Box>
                 <Center
@@ -225,9 +226,8 @@ export function NFTCardStore ({ data }: NftCardProps) {
               </Text>
             </Center>
           </Flex>
-          <Box 
+          <Box
             mt="10px"
-            justfyContent="end"
           >
             <Button
               onClick={() => goTo()}

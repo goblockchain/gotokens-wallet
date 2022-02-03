@@ -8,7 +8,7 @@ export function CreatorsCard({ data }) {
     <Box
       maxW="290px"
       border="1px solid"
-      borderColor={data.type === "Embaixador" ? "yellow.500" : "#dfdfdf"}
+      borderColor={data.type === "Embaixador" ? "blue.500" : "#dfdfdf"}
       borderRadius="15px"
       background="#fff"
       p="14px"

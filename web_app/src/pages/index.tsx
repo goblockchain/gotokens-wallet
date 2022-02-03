@@ -43,13 +43,14 @@ export default function home() {
         ) : (
           <SimpleGrid
             mt="67px"
-            p="0 50px"
+            p={{ base: '0px', md: '0 20px', xl: '0 50px' }}
             justifyItems="center"
             cursor="pointer"
             spacing="16px"
+            columns={{ sm: 1, lg: 2, xl: 2 }}
           >
             { marketItens ? marketItens.map((nft) => (
-              <NFTSellOffer
+              <NFTCardStore
                 data={{
                   tokenId: nft.IDtoken,
                   amount: nft.amount,

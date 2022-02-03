@@ -10,7 +10,7 @@ export function PaymentModal({ onClose }) {
   const [step, setStep] = useState<
   'paymentType' | 'confirmPayment' | 'cryptoCheckout' | 'loading'
   >('paymentType')
-  const [paymentType, setPaymentType] = useState<'credit' | 'crypto'>('credit')
+  const [paymentType, setPaymentType] = useState('crypto')
   const [selectedCurreny, setSelectedCurrency] = useState('FTR')
 
   useEffect(() => {
@@ -22,10 +22,10 @@ export function PaymentModal({ onClose }) {
   })
   const router = useRouter()
 
-    function double () {
-      setStep('loading')
-      router.push('/nftpurchased')
-    }
+  function double () {
+    setStep('loading')
+    router.push('/nftpurchased')
+  }
   return (
     <>
       {step === 'paymentType' && (
@@ -45,60 +45,62 @@ export function PaymentModal({ onClose }) {
               p="19px"
               w="100%"
               border="1px solid #dfdfdf"
-              borderColor={paymentType === "crypto" && "blue.500"}
+              borderColor={paymentType === 'crypto' && 'blue.500'}
               bg="0"
               _focus={{
-                outline: "0",
-                boxShadow: "inherit",
+                outline: '0',
+                boxShadow: 'inherit'
               }}
               _hover={{
-                bg: "0",
+                bg: '0'
               }}
               display="block"
             >
-              <Flex w="100%" justifyContet="space-between">
-                <Image src="/payment/crypto.png" alt="crypto" mr="10px"></Image>
-                <Text fontWeight="400" color="#454545" fontSize="14px">
-                  ETH, BNB
-                </Text>
-              </Flex>
               <Box w="140px">
-                <Flex mt="16px">
-                  <Image
-                    height="11px"
-                    width="11px"
-                    src="/payment/clock.png"
-                    alt="clock"
-                    mr="10px"
-                  ></Image>
-                  <Text fontWeight="400" color="#717171" fontSize="12px">
-                    Instântaneo
+                <Flex w="100%" justifyContet="space-between">
+                  <Image src="/payment/crypto.png" alt="crypto" mr="10px"></Image>
+                  <Text fontWeight="400" color="#454545" fontSize="14px">
+                    ETH, BNB
                   </Text>
                 </Flex>
-                <Flex mt="7px">
-                  <Image
-                    height="12px"
-                    width="8px"
-                    src="/payment/dollar-bill.png"
-                    alt="dollar"
-                    mr="10px"
-                  ></Image>
-                  <Text fontWeight="400" color="#717171" fontSize="12px">
-                    Taxa de emissão inclusa
-                  </Text>
-                </Flex>
-                <Flex mt="7px">
-                  <Image
-                    src="/payment/fire.png"
-                    alt="thumbs up"
-                    mr="10px"
-                    width="12px"
-                    height="12px"
-                  ></Image>
-                  <Text fontWeight="400" color="#717171" fontSize="12px">
-                    Pagamento descentralizado
-                  </Text>
-                </Flex>
+                <Box w="140px">
+                  <Flex mt="16px">
+                    <Image
+                      height="11px"
+                      width="11px"
+                      src="/payment/clock.png"
+                      alt="clock"
+                      mr="10px"
+                    ></Image>
+                    <Text fontWeight="400" color="#717171" fontSize="12px">
+                      Instântaneo
+                    </Text>
+                  </Flex>
+                  <Flex mt="7px">
+                    <Image
+                      height="12px"
+                      width="8px"
+                      src="/payment/dollar-bill.png"
+                      alt="dollar"
+                      mr="10px"
+                    ></Image>
+                    <Text fontWeight="400" color="#717171" fontSize="12px">
+                      Taxa de emissão inclusa
+                    </Text>
+                  </Flex>
+                  <Flex mt="7px">
+                    <Image
+                      src="/payment/fire.png"
+                      alt="thumbs up"
+                      mr="10px"
+                      width="12px"
+                      height="12px"
+                    ></Image>
+                    <Text fontWeight="400" color="#717171" fontSize="12px">
+                      Pagamento descentralizado
+                    </Text>
+                  </Flex>
+                </Box>
               </Box>
             </Button>
           </Box>
@@ -152,8 +154,8 @@ export function PaymentModal({ onClose }) {
               width="82px"
               // _hover={{ bg: "" }}
               // _focus={{ outline: "0" }}
-              borderColor={selectedCurreny === "FTR" ? "blue.500" : "#dfdfdf"}
-              onClick={() => setSelectedCurrency("FTR")}
+              borderColor={selectedCurreny === 'FTR' ? 'blue.500' : '#dfdfdf'}
+              onClick={() => setSelectedCurrency('FTR')}
             >
               <Image borderRadius="50%" mr="8px" src="/payment/ftr.png"></Image>
               FTR
@@ -164,10 +166,10 @@ export function PaymentModal({ onClose }) {
               border="1px solid #dfdfdf"
               height="52px"
               width="82px"
-              _hover={{ bg: "" }}
-              _focus={{ outline: "0" }}
-              borderColor={selectedCurreny === "ETH" ? "blue.500" : "#dfdfdf"}
-              onClick={() => setSelectedCurrency("ETH")}
+              _hover={{ bg: '' }}
+              _focus={{ outline: '0' }}
+              borderColor={selectedCurreny === 'ETH' ? 'blue.500' : '#dfdfdf'}
+              onClick={() => setSelectedCurrency('ETH')}
             >
               <Image mr="8px" src="/payment/eth.png"></Image>
               ETH
@@ -178,10 +180,10 @@ export function PaymentModal({ onClose }) {
               border="1px solid #dfdfdf"
               height="52px"
               width="82px"
-              _hover={{ bg: "" }}
-              _focus={{ outline: "0" }}
-              borderColor={selectedCurreny === "BNB" ? "blue.500" : "#dfdfdf"}
-              onClick={() => setSelectedCurrency("BNB")}
+              _hover={{ bg: '' }}
+              _focus={{ outline: '0' }}
+              borderColor={selectedCurreny === 'BNB' ? 'blue.500' : '#dfdfdf'}
+              onClick={() => setSelectedCurrency('BNB')}
             >
               <Image mr="8px" src="/payment/bnb.png"></Image>
               BNB
