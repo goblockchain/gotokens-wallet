@@ -1,12 +1,10 @@
-import {
-  SimpleGrid
-} from '@chakra-ui/react'
+import { SimpleGrid } from '@chakra-ui/react'
 
 import { NFTSellOffer } from '../components/NFTSellOffer';
 import { NFTCardStore } from '../components/NFTCardFiltrStore';
 import Head from 'next/head'
 import React, { ReactElement, useState, useEffect } from 'react'
-import MainLayout from '../layouts/MainLayout'
+import { SpaceLayoutFiltr } from '../layouts/spaceLayoutFiltr'
 import loadContract from '../contracts/Helpers';
 
 export default function home() {
@@ -41,7 +39,7 @@ export default function home() {
       </Head>
       {
         loading ? (
-          <div>...Data Loading.....</div>
+          <div color="#FFFFFF">...Data Loading.....</div>
         ) : (
           <SimpleGrid
             mt="67px"
@@ -85,5 +83,5 @@ export default function home() {
 }
 
 home.getLayout = function getLayout (page: ReactElement) {
-  return <MainLayout >{page}</MainLayout>
+  return <SpaceLayoutFiltr >{page}</SpaceLayoutFiltr>
 }
