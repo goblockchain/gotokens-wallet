@@ -8,7 +8,8 @@ import {
   MenuList,
   Text,
   Tooltip,
-  Center
+  Center,
+  background
 } from '@chakra-ui/react'
 
 import { Button } from '../../components'
@@ -53,7 +54,6 @@ export function NFTSellOffer ({ data }: NftCardProps) {
     router.push(`/nft/${hash}`)
   }
 
-
   return (
     <Box
       background="0"
@@ -68,7 +68,7 @@ export function NFTSellOffer ({ data }: NftCardProps) {
       width="max-content"
     >
       {data.type !== 'preview' && (
-        <Flex ml="7px">
+        <Flex justifyContent="flex-end">
           <Menu placement="bottom" >
             {/* ml="auto" mr="10px" */}
             <MenuButton fontSize="25px" fontWeight="bold" color="#FFFFFF" >
@@ -101,6 +101,7 @@ export function NFTSellOffer ({ data }: NftCardProps) {
             borderColor="#FFFFFF"
             w="40px"
             mr="10px"
+            bg="#000000"
           >
             <Box
               borderTop="1px"
@@ -111,13 +112,9 @@ export function NFTSellOffer ({ data }: NftCardProps) {
             >
             </Box>
           </Box>
-          {/* <Image
-            height="269px"
-            width="235px"
-            src={nftData.url ? nftData.url : '/default-nft-cover.png'}
-            alt="nft"
-          /> */}
-          <iframe src={nftData.url} width={'100%'}></iframe>
+              <Box bg="#FFFFFF" >
+                <iframe src={nftData.url} width={'100%'} height={'100%'}></iframe>
+              </Box>
         </Flex>
         <Flex
           background="#000"
