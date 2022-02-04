@@ -52,7 +52,7 @@ function NotificationProvider({ children }) {
         <ModalOverlay />
         <ModalContent
           borderTop="6px solid"
-          borderColor="yellow.500"
+          borderColor="blue.500"
           borderRadius="15px"
         >
           <ModalBody p="8">
