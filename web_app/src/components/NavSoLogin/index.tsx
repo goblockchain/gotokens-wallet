@@ -2,7 +2,6 @@ import { Image as ChakraImage, Text, Box } from '@chakra-ui/react'
 import { Button } from '@chakra-ui/button'
 import { Flex } from '@chakra-ui/layout'
 import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/router';
 import Metamask from '../../../public/MetamaskImg.png'
 import { FcKey } from 'react-icons/fc'
 
@@ -15,31 +14,11 @@ export default function Nav() {
     conectar: ' MetaMask'
   }
 
-  const router = useRouter();
-
   useEffect(() => {
-    const ethereum = window["ethereum"];
-    ethereum.on('accountsChanged', function () {
-      setConnectedStatus(false);
-      connectWalletPressed();
-    })
-    router.events.on("routeChangeComplete", () => {
-      if(!walletAddress){
-        connectWalletPressed();
-      }
-    });
+    connectWalletPressed();
   }, []);
 
   const connectWalletPressed = async () => {
-    if (isConnected) {
-      return alert(
-        'Conta já conectada! ' +
-        String(walletAddress).substring(0, 5) +
-        '...' +
-        String(walletAddress).substring(38)
-      )
-    }
-
     const walletResponse = await connectWallet();
     setConnectedStatus(walletResponse.connectedStatus);
     setStatus(walletResponse.status);

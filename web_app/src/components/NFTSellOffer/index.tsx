@@ -2,10 +2,18 @@ import {
   Box,
   Flex,
   Heading,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Text,
   Tooltip,
-  Center
+  Center,
+  background
 } from '@chakra-ui/react'
+
+import { Button } from '../../components'
+
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import axios from 'axios';
@@ -46,22 +54,46 @@ export function NFTSellOffer ({ data }: NftCardProps) {
     router.push(`/nft/${hash}`)
   }
 
-
   return (
-    <Box background="0" position="relative"
+    <Box
+      background="0"
+      position="relative"
       _hover={
-        { transform: 'translateY(-4px)' }
+        data.type !== 'preview' && {
+          transform: 'translateY(-4px)'
+        }
       }
       transition="all 500ms"
-      m="15px" width="max-content"
+      m={{ base: '0px', md: '5px', xl: '15px' }}
+      width="max-content"
     >
+      {data.type !== 'preview' && (
+        <Flex justifyContent="flex-end">
+          <Menu placement="bottom" >
+            {/* ml="auto" mr="10px" */}
+            <MenuButton fontSize="25px" fontWeight="bold" color="#FFFFFF" >
+                ...
+            </MenuButton>
+            <MenuList ml="30px">
+              {data.options?.map((option) => (
+                <MenuItem
+                  key={option.title}
+                  _hover={{ background: 'yellow.500' }}
+                  icon={<FaCode />}
+                >
+                  {option.title}
+                </MenuItem>
+              ))}
+            </MenuList>
+          </Menu>
+        </Flex>
+      )}
 
       <Box
         width="max-content"
         onClick={(e) => console.log(data)}
         position="relative"
         background="transparent"
-        //onClick={() => goTo()}
       >
         <Flex mb="10px">
           <Box
@@ -69,6 +101,7 @@ export function NFTSellOffer ({ data }: NftCardProps) {
             borderColor="#FFFFFF"
             w="40px"
             mr="10px"
+            bg="#000000"
           >
             <Box
               borderTop="1px"
@@ -79,13 +112,9 @@ export function NFTSellOffer ({ data }: NftCardProps) {
             >
             </Box>
           </Box>
-          {/* <Image
-            height="269px"
-            width="235px"
-            src={nftData.url ? nftData.url : '/default-nft-cover.png'}
-            alt="nft"
-          /> */}
-          <iframe src={nftData.url} width={'100%'}></iframe>
+              <Box bg="#FFFFFF" >
+                <iframe src={nftData.url} width={'100%'} height={'100%'}></iframe>
+              </Box>
         </Flex>
         <Flex
           background="#000"
@@ -97,6 +126,7 @@ export function NFTSellOffer ({ data }: NftCardProps) {
                 fontWeight="bold"
                 bg="dark"
                 aria-label="A tooltip"
+                // label={data.name}
                 label={nftData.name}
                 hasArrow
               >
@@ -113,6 +143,7 @@ export function NFTSellOffer ({ data }: NftCardProps) {
                   fontSize= "18px"
                   lineHeight= "21px"
                 >
+                  {/* {data.name || 'Título do NFT'} */}
                   {nftData.name || 'Título do NFT'}
                 </Heading>
               </Tooltip>
@@ -131,7 +162,10 @@ export function NFTSellOffer ({ data }: NftCardProps) {
                     fontSize= "18px"
                     lineHeight= "21px"
                   >
-                    {nftData.checksum}
+                    {/* {nftData.checksum} */}
+                    {String(nftData.checksum).substring(0, 23) +
+                      '...' +
+                      String(nftData.checksum).substring(38)}
                   </Text>
                 </Box>
                 <Center
@@ -149,6 +183,7 @@ export function NFTSellOffer ({ data }: NftCardProps) {
                     fontSize= "11px"
                     lineHeight="12px "
                   >
+                    {/* 499/499 */}
                     {data.amount}
                   </Text>
                 </Center>
@@ -168,6 +203,15 @@ export function NFTSellOffer ({ data }: NftCardProps) {
               </Text>
             </Center>
           </Flex>
+          <Box
+            mt="10px"
+          >
+            <Button
+              onClick={() => goTo()}
+            >
+              Comprar
+            </Button>
+          </Box>
         </Flex>
       </Box>
     </Box>

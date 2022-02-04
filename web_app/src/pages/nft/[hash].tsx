@@ -111,9 +111,12 @@ export default function nft () {
                 h="36px"
                 p="0 10px"
                 border="1px solid #FFFFFF"
-                ml="20px"
+                ml={{base: '10px', md: '20px'}}
                 onClick={async () => router.push('/')}
                 cursor="pointer"
+                _hover={{
+                  bg: "#332bc9",
+                }}
               >
                 <FaAngleLeft color='#FFFF'/>
               </Center>

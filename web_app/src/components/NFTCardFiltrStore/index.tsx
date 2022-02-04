@@ -23,32 +23,10 @@ interface NftCardProps {
   data: {
     name: string
     nftCover: string
-    avatar?: string
     options?: Array<{ title: string, icon: string }>
     type: 'marketplace' | 'editable' | 'readOnly' | 'preview'
     quantity: 'single' | 'multiple'
-    marketplace?: {
-      type: 'fixedPrice' | 'indeterminatedAuction' | 'timedAuction'
-      fixedPrice?: string
-      PriceBRL?: string
-      stockNft?: string
-      quantityNft?: string
-      about?: string
-      throw?: string
-      stock?: number | string
-      currentBid?: number | string
-      starsAt?: number | string
-      finishesAt?: number | string
-      amount: string
-
-      tokenId: string
-      createTime: string
-      itemId: string
-      price: string
-      seller: string
-      contract: object
-      accounts: string
-    }
+    
   }
 }
 export function NFTCardStore ({ data }: NftCardProps) {
