@@ -45,8 +45,7 @@ export function NFTCardStore ({ data }: NftCardProps) {
   }, []);
 
   const router = useRouter()
-  function goTo (hash: string = 'hash') {
-    if (data.type === 'preview') return
+  function goTo (hash: string) {
     router.push(`/nft/${hash}?token=${hash}`)
   }
 

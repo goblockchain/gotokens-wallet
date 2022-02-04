@@ -207,7 +207,7 @@ export function NFTSellOffer ({ data }: NftCardProps) {
             mt="10px"
           >
             <Button
-              onClick={() => goTo()}
+              onClick={() => goTo(data.tokenId)}
             >
               Comprar
             </Button>
