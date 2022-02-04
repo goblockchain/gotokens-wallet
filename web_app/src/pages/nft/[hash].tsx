@@ -60,14 +60,17 @@ export default function nft () {
                 h="36px"
                 p="0 10px"
                 border="1px solid #FFFFFF"
-                ml="20px"
+                ml={{base: '10px', md: '20px'}}
                 onClick={async () => router.push('/')}
                 cursor="pointer"
+                _hover={{
+                  bg: "#332bc9",
+                }}
               >
                 <FaAngleLeft color='#FFFF'/>
               </Center>
               <Box
-                p="0 100px"
+                p={{base:'0 10px', md: '0 100px'}}
               >
                 <Flex height="380px" w="100%">
                   <Box
@@ -102,7 +105,8 @@ export default function nft () {
               // minW="450px"
               p="0 60px"
               flex="1"
-              borderLeft="1px solid #DFDFDF"
+              borderLeft={{ base: 'none', md: 'none', xl:'1px solid #DFDFDF' }}
+              mb={{base: '30px', md: '0px'}}
             >
               <Heading mt="25px"
                 fontFamily= "PT Serif"
