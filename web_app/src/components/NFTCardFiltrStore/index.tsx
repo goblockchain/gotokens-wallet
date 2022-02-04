@@ -13,7 +13,6 @@ import {
 import React, { useEffect, useState } from 'react'
 
 import { Button } from '../../components'
-import Image from 'next/image'
 import { FaCode } from 'react-icons/fa'
 
 import { useRouter } from 'next/router'
@@ -59,7 +58,6 @@ export function NFTCardStore ({ data }: NftCardProps) {
     const result = await data.contract.methods.token_uri(data.tokenId).call(); 
     try {
       let { data } = await axios.get(result);
-      console.log(data);
       setNftData(data);
     } catch (error) {}
   }
@@ -71,7 +69,7 @@ export function NFTCardStore ({ data }: NftCardProps) {
   const router = useRouter()
   function goTo (hash: string = 'hash') {
     if (data.type === 'preview') return
-    router.push(`/nft/${hash}`)
+    router.push(`/nft/${hash}?token=${hash}`)
   }
 
   return (
@@ -131,12 +129,6 @@ export function NFTCardStore ({ data }: NftCardProps) {
             >
             </Box>
           </Box>
-          {/* <Image
-            height="269px"
-            width="235px"
-            src={nftData.url ? nftData.url : '/default-nft-cover.png'}
-            alt="nft"
-          /> */}
           <iframe src={nftData.url} width={'100%'}></iframe>
         </Flex>
         <Flex
@@ -230,7 +222,7 @@ export function NFTCardStore ({ data }: NftCardProps) {
             mt="10px"
           >
             <Button
-              onClick={() => goTo()}
+              onClick={() => goTo(data.tokenId)}
             >
               Comprar
             </Button>

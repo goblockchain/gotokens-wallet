@@ -7,9 +7,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 export function PaymentModal({ onClose }) {
-  const [step, setStep] = useState<
-  'paymentType' | 'confirmPayment' | 'cryptoCheckout' | 'loading'
-  >('paymentType')
+  const [step, setStep] = useState<'paymentType' | 'confirmPayment' | 'cryptoCheckout' | 'loading'>('paymentType')
   const [paymentType, setPaymentType] = useState('crypto')
   const [selectedCurreny, setSelectedCurrency] = useState('FTR')
 

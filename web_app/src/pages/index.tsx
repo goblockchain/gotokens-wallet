@@ -24,7 +24,6 @@ export default function home() {
     setOwner(data);
     setMarketItens(itens);
     setLoading(false);
-    console.log(itens);
   }
 
   useEffect(() => {

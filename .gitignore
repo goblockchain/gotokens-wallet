@@ -14,6 +14,9 @@ gasReporterOutput.json
 coverage.json
 .env
 
+web_app/src/gotokens-metaspray/
+
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 

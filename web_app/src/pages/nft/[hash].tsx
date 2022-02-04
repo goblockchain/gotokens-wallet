@@ -8,9 +8,9 @@ import {
   Badge,
   Center
 } from '@chakra-ui/react'
-
-import React from 'react'
-
+import loadContract from '../../contracts/Helpers';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Nav from '../../components/NavSoLogin'
 import NoNavNoFooterLayout from '../../layouts/noNavNoFooterLayout'
 
@@ -25,6 +25,11 @@ import { useRouter } from 'next/router'
 import { PaymentModal } from '../../components/payment-modal'
 
 export default function nft () {
+  const [contract, setContract] = useState({});
+  const [accounts, setAccounts] = useState('');
+  const [nftDataGet, setNftData] = useState({});
+  const [activeSellOffer, setActiveSellOffer] = useState({});
+
   const filtrData = {
     title: 'Natiruts Sound System',
     image: '/filtr/natiruts-nft.png',
@@ -39,7 +44,38 @@ export default function nft () {
   }
   const router = useRouter()
   const isRouteReady = router.isReady
-  const data = router.asPath.includes('Natiruts') ? filtrData : nftData
+  const data = router.asPath.includes('Natiruts') ? filtrData : nftData;
+  let hash
+
+  setTimeout(() => {
+    hash = router.query.hash;
+    if(!nftDataGet.url){
+      fetchEmployees();
+    }
+  }, 2000);
+  
+  async function fetchEmployees() {
+    try {
+      const activeSellOffer = await contract.methods.activeSellOffers(hash).call();
+      console.log('activeSellOffer: ', activeSellOffer);
+      setActiveSellOffer(activeSellOffer);
+      const token_uri = await contract.methods.token_uri(activeSellOffer.IDtoken).call(); 
+      console.log('token_uri: ', token_uri);
+      let { data } = await axios.get(token_uri);
+      console.log('axios.get: ', data);
+      setNftData(data);
+    } catch (error) {}
+  }
+
+  async function loadSmartContract() {
+    const returned = await loadContract();
+    setContract(returned.contract);
+    setAccounts(returned.accounts);
+  }
+
+  useEffect(() => {
+    loadSmartContract();
+  }, []);
 
   const { emitModal } = useNotification()
   const triggerPaymentModal = () => {
@@ -48,13 +84,28 @@ export default function nft () {
       options: { size: 'sm', isCentered: true }
     })
   }
+  const triggerBuy = async () => {
+    try {
+      let ethereum = window['ethereum']
+      let accounts = await ethereum.request({ method: 'eth_accounts' });
+      const return_buy = await contract.methods.buyToken(activeSellOffer.itemId, 1).send({
+        from: accounts[0],
+        value: activeSellOffer.price
+      })
+      console.log(return_buy);
+      window.location.reload();
+    } catch (error) {
+      console.log(error.message);
+      console.log(JSON.parse(error.message));
+    }
+  }
   return (
     <Box width="100%" height="100%" bg="#0A03AB">
       <Nav/>
       <Flex flexWrap="wrap" maxW="1367px" justifyContent="space-around">
         {isRouteReady && (
           <>
-            <Box>
+            <Box width="100%" pb="24px" pl="24px">
               <Center
                 w="36px"
                 h="36px"
@@ -66,9 +117,9 @@ export default function nft () {
               >
                 <FaAngleLeft color='#FFFF'/>
               </Center>
-              <Box
-                p="0 100px"
-              >
+            </Box>
+            <Box display='flex' alignItems='center'>
+              <Box p="0 70px">
                 <Flex height="380px" w="100%">
                   <Box
                     border="1px"
@@ -77,145 +128,140 @@ export default function nft () {
                     w="36px"
                     mr="10px"
                   >
-                    <Box
-                      borderTop="1px"
-                      borderColor="#FFFFFF"
-                      mt="340px"
-                    >
-                    </Box>
+                    <Box borderTop="1px" borderColor="#FFFFFF" mt="340px"></Box>
                   </Box>
                   <Box
                     height="380px"
-                    // width="380px"
+                    width="450px"
                     bg="#FFFFFF"
                   >
                     <iframe
                       width="100%"
                       height="100%"
-                      src="https://app.vectary.com/viewer/v1/?model=7fa90a27-83ae-4ab1-ad6f-1b14f24fcc3c&env=studio3&turntable=3" title="description">
+                      src={nftDataGet.url} title="description">
                     </iframe>
                   </Box>
                 </Flex>
               </Box>
-            </Box>
-            <Box
-              // minW="450px"
-              p="0 60px"
-              flex="1"
-              borderLeft="1px solid #DFDFDF"
-            >
-              <Heading mt="25px"
-                fontFamily= "PT Serif"
-                fontStyle= "Bold"
-                fontSize= "32px"
-                lineHeight= "42px"
-                color="#FFFFFF"
+              <Box
+                // minW="450px"
+                p="0 60px"
+                flex="1"
+                borderLeft="1px solid #DFDFDF"
               >
-                {data.title}
-              </Heading>
-              <Text
-                mt="5px"
-                mb="25px"
-                color="#FFFFFF"
-                fontFamily= "Roboto"
-                fontStyle= "Regular"
-                fontSize= "16px"
-                lineHeight= "19px"
-                fontWeight="thin"
-              >
-                By Cadumen
-              </Text>
-              <Flex>
-                <Badge
-                  mr="19px"
-                  color="#A19D9D"
-                  bg="#f2f2f2"
-                  borderRadius="38px"
-                  p="5px 15px"
-                >
-                0xb236...
-                </Badge>
-                <Icon fontSize="25px" color="#0A03AB" as={Copy}></Icon>
-                <Text
-                  fontFamily="Roboto"
-                  fontStyle="Regular"
-                  fontSize="16px"
-                  lineHeight="19px"
+                <Heading mt="25px"
+                  fontFamily= "PT Serif"
+                  fontStyle= "Bold"
+                  fontSize= "32px"
+                  lineHeight= "42px"
                   color="#FFFFFF"
-                  ml="25px"
                 >
-                  60/499
-                </Text>
-              </Flex>
-              <Text
-                color="#FFFFFF"
-                fontSize="14px"
-                mt="38px"
-                fontWeight="normal"
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet sed amet augue odio gravida nunc risus elit tellus.
-              </Text>
-              <Box>
+                  {nftDataGet.name}
+                </Heading>
                 <Text
-                  color="gray.500"
-                  mt="40px"
-                  mb="4px"
-                  fontSize="16px"
+                  mt="5px"
+                  mb="25px"
+                  color="#FFFFFF"
+                  fontFamily= "Roboto"
+                  fontStyle= "Regular"
+                  fontSize= "16px"
+                  lineHeight= "19px"
+                  fontWeight="thin"
                 >
-                  Criador
+                  By {nftDataGet.user}
                 </Text>
-                <Flex alignItems="center">
-                  <Text color="#FFFFFF" >{data.creator}</Text>
-                </Flex>
-              </Box>
-              <Flex mt="38px" alignItems="center">
-                <Flex
-                  w="190px"
-                  h="63px"
-                  alignItems="center"
-                  border="1px solid"
-                  borderColor="gray.100"
-                >
-                  <Box p="0 10px">
-                    <Text fontSize="14px" fontWeight="thin" color="#FFFFFF">
-                      FIXED PRICE
-                    </Text>
-                    <Text fontSize="14px" fontWeight="bold" color="#FFFFFF">
-                      {data.price}
-                    </Text>
-                  </Box>
-                </Flex>
-                <Box
-                  w="78px"
-                  h="63px"
-                  alignItems="center"
-                  justifyContent="space-around"
-                  border="1px solid"
-                  borderColor="gray.100"
-                >
-                  <ChakraButton
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    bg="0"
-                    _hover={{ bg: '' }}
-                    _focus={{ outline: 0 }}
-                    w="100%"
-                    h="100%"
-                    p="0"
-                    onClick={triggerPaymentModal }
+                <Flex>
+                  <Badge
+                    mr="19px"
+                    color="#A19D9D"
+                    bg="#f2f2f2"
+                    borderRadius="38px"
+                    p="5px 15px"
                   >
-                    <Flex
+                  0xb236...
+                  </Badge>
+                  <Icon fontSize="25px" color="#0A03AB" as={Copy}></Icon>
+                  <Text
+                    fontFamily="Roboto"
+                    fontStyle="Regular"
+                    fontSize="16px"
+                    lineHeight="19px"
+                    color="#FFFFFF"
+                    ml="25px"
+                  >
+                    {activeSellOffer.amount}
+                  </Text>
+                </Flex>
+                <Text
+                  color="#FFFFFF"
+                  fontSize="14px"
+                  mt="38px"
+                  fontWeight="normal"
+                >
+                  {nftDataGet.description}
+                </Text>
+                <Box>
+                  <Text
+                    color="gray.500"
+                    mt="40px"
+                    mb="4px"
+                    fontSize="16px"
+                  >
+                    Criador
+                  </Text>
+                  <Flex alignItems="center">
+                    <Text color="#FFFFFF" >{activeSellOffer.seller}</Text>
+                  </Flex>
+                </Box>
+                <Flex mt="38px" alignItems="center">
+                  <Flex
+                    w="190px"
+                    h="63px"
+                    alignItems="center"
+                    border="1px solid"
+                    borderColor="gray.100"
+                  >
+                    <Box p="0 10px">
+                      <Text fontSize="14px" fontWeight="thin" color="#FFFFFF">
+                        FIXED PRICE
+                      </Text>
+                      <Text fontSize="14px" fontWeight="bold" color="#FFFFFF">
+                        { (parseFloat(activeSellOffer.price) / (10 ** 18)).toFixed(5) } ETH
+                      </Text>
+                    </Box>
+                  </Flex>
+                  <Box
+                    w="78px"
+                    h="63px"
+                    alignItems="center"
+                    justifyContent="space-around"
+                    border="1px solid"
+                    borderColor="gray.100"
+                  >
+                    <ChakraButton
+                      display="flex"
                       alignItems="center"
                       justifyContent="center"
-                      h="40px"
-                      w="40px"
+                      bg="0"
+                      _hover={{ bg: '' }}
+                      _focus={{ outline: 0 }}
+                      w="100%"
+                      h="100%"
+                      p="0"
+                      onClick={triggerBuy}
                     >
-                      <BsCart2 color='#FFFFFF' size={30}/>
-                    </Flex>
-                  </ChakraButton>
-                </Box>
-              </Flex>
+                      <Flex
+                        alignItems="center"
+                        justifyContent="center"
+                        h="40px"
+                        w="40px"
+                      >
+                        <BsCart2 color='#FFFFFF' size={30}/>
+                      </Flex>
+                    </ChakraButton>
+                  </Box>
+                </Flex>
+              </Box>
             </Box>
           </>
         )}
