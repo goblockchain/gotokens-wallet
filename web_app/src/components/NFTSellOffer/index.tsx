@@ -39,7 +39,7 @@ export function NFTSellOffer ({ data }: NftCardProps) {
     const result = await data.contract.methods.token_uri(data.tokenId).call(); 
     try {
       let { data } = await axios.get(result);
-      console.log(data);
+
       setNftData(data);
     } catch (error) {}
   }

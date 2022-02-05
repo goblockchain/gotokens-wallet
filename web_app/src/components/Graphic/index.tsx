@@ -48,23 +48,6 @@ export function Graphic() {
         }
     ]
 
-    // let totalGray = data.reduce((total, accumulator) => {
-    //     return total + accumulator.gray
-    // }, 0)
-
-    // let totalGreen = data.reduce((total, accumulator) => {
-    //     return total + accumulator.green
-    // }, 0)
-
-    // // if(totalGreen > totalGray){
-    // //     setPositive(true)
-    // // } else {
-    //     // setPositive(false)
-    // // }
-
-    // console.log("Gray: " + totalGray)
-    // console.log("Green: " + totalGreen)
-
     return(
         <Flex className="graphics" alignItems="center">
             <AreaChart 

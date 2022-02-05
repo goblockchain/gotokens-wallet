@@ -4,7 +4,6 @@ import React, { useState } from "react"
 export function ColorPicker({ label, helperText, ...rest }) {
   const [value, setValue] = useState("#FFFFFF")
 
-  // console.log(value)
   return (
     <Box
       value={value}

@@ -1,4 +1,4 @@
-import { SimpleGrid } from '@chakra-ui/react'
+import { SimpleGrid, CircularProgress } from '@chakra-ui/react'
 
 import { NFTSellOffer } from '../components/NFTSellOffer';
 import { NFTCardStore } from '../components/NFTCardFiltrStore';
@@ -8,22 +8,27 @@ import { SpaceLayoutFiltr } from '../layouts/spaceLayoutFiltr'
 import loadContract from '../contracts/Helpers';
 
 export default function home() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [owner, setOwner] = useState('');
   const [marketItens, setMarketItens] = useState<any[]>([]);
   const [contract, setContract] = useState({});
   const [accounts, setAccounts] = useState('');
 
   async function fetchEmployees() {
-    const returned = await loadContract();
-    setContract(returned.contract);
-    setAccounts(returned.accounts);
-    const data = await returned.contract.methods.owner().call(); 
-    let  itens = await returned.contract.methods.fetchMarketItems().call();
-    itens = itens.filter( ( elem ) => elem['price'] != '0');
-    setOwner(data);
-    setMarketItens(itens);
-    setLoading(false);
+    try {
+      const returned = await loadContract();
+      setContract(returned.contract);
+      setAccounts(returned.accounts);
+      const data = await returned.contract.methods.owner().call(); 
+      let  itens = await returned.contract.methods.fetchMarketItems().call();
+      itens = itens.filter( ( elem ) => elem['price'] != '0');
+      setOwner(data);
+      setMarketItens(itens); 
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false); 
+    }
   }
 
   useEffect(() => {
@@ -38,7 +43,9 @@ export default function home() {
       </Head>
       {
         loading ? (
-          <div>...Data Loading.....</div>
+          <SimpleGrid justifyItems="center" mt="50px" mb="50px">
+            <CircularProgress isIndeterminate size='120px' />
+          </SimpleGrid>
         ) : (
           <SimpleGrid
             mt="67px"
@@ -46,7 +53,7 @@ export default function home() {
             justifyItems="center"
             cursor="pointer"
             spacing="16px"
-            columns={{ sm: 1, lg: 2, xl: 2 }}
+            columns={{ sm: 1, lg: 1, xl: 1 }}
           >
             { marketItens ? marketItens.map((nft) => (
               <NFTCardStore

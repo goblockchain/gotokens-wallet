@@ -15,6 +15,10 @@ export default function Nav() {
   }
 
   useEffect(() => {
+    const ethereum = window["ethereum"];
+    ethereum.on('accountsChanged', function () {
+      window.location.reload();
+    })
     connectWalletPressed();
   }, []);
 

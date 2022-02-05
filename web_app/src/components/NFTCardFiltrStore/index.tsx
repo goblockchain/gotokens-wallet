@@ -8,7 +8,9 @@ import {
   MenuList,
   Text,
   Tooltip,
-  Center
+  Center,
+  SimpleGrid,
+  CircularProgress
 } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 
@@ -31,6 +33,7 @@ interface NftCardProps {
 }
 export function NFTCardStore ({ data }: NftCardProps) {
   const [nftData, setNftData] = useState({});
+  const [loading, setLoading] = useState(false);
 
   async function fetchEmployees() {
     const result = await data.contract.methods.token_uri(data.tokenId).call(); 
@@ -46,6 +49,7 @@ export function NFTCardStore ({ data }: NftCardProps) {
 
   const router = useRouter()
   function goTo (hash: string) {
+    setLoading(true);
     router.push(`/nft/${hash}?token=${hash}`)
   }
 
@@ -155,9 +159,9 @@ export function NFTCardStore ({ data }: NftCardProps) {
                     lineHeight= "21px"
                   >
                     {/* {nftData.checksum} */}
-                    {String(nftData.checksum).substring(0, 23) +
+                    {String(nftData.checksum).substring(0, 20) +
                       '...' +
-                      String(nftData.checksum).substring(38)}
+                      String(nftData.checksum).substring(30, 38)}
                   </Text>
                 </Box>
                 <Center
@@ -198,11 +202,17 @@ export function NFTCardStore ({ data }: NftCardProps) {
           <Box
             mt="10px"
           >
-            <Button
-              onClick={() => goTo(data.tokenId)}
-            >
-              Comprar
-            </Button>
+            {
+              loading ? (
+                <SimpleGrid justifyItems="center" mt="16px" mb="16px">
+                  <CircularProgress isIndeterminate size='60px' />
+                </SimpleGrid>
+              ) : (
+                <Button width="100%" onClick={() => goTo(data.tokenId)}>
+                  Comprar
+                </Button>
+              )
+            }
           </Box>
         </Flex>
       </Box>
