@@ -49,7 +49,7 @@ export default function home() {
             columns={{ sm: 1, lg: 2, xl: 2 }}
           >
             { marketItens ? marketItens.map((nft) => (
-              <NFTSellOffer
+              <NFTCardStore
                 data={{
                   tokenId: nft.IDtoken,
                   amount: nft.amount,
